@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LazzatFood</title>
+    <!--- favicon  -->
+    <link
+      rel="shortcut icon"
+      href="./assets/images/logo/favicon-32x32.png"
+      type="image/png"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <!-- google font link  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arvo&family=Atkinson+Hyperlegible&family=Frank+Ruhl+Libre:wght@300;400&family=Great+Vibes&family=Lato&family=Montserrat:wght@700&family=Nanum+Gothic&family=Open+Sans&family=Pattaya&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&family=Spartan:wght@300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="overlay" data-overlay></div>
+
+    <!--- HEADER -->
+    <header>
+      <div class="header-main">
+        <div class="container">
+          <a href="#" class="header-logo">
+            <p class="logo">Lazzat<span>Food</span></p>
+          </a>
+          <div class="header-search-container">
+            <input
+              type="search"
+              name="search"
+              class="search-field"
+              placeholder="Izlash, misol uchun kolbasa..."
+            />
+            <button class="search-btn">
+              <ion-icon name="search-outline"></ion-icon>
+            </button>
+          </div>
+          <div class="header-user-actions">
+            <button class="action-btn">
+              <ion-icon name="call-outline"></ion-icon>
+            </button>
+            <p class="help">Yordam</p>
+            <button class="action-btn">
+              <ion-icon name="person-outline"></ion-icon>
+            </button>
+            <button class="action-btn">
+              <ion-icon name="bag-handle-outline" id="cart-icon"></ion-icon>
+              <!-- <span class="count">0</span> -->
+            </button>
+            <div class="order-cart">
+              <div class="cart-title">Savatcha</div>
+              <div class="cart-content"></div>
+              <!-- total -->
+              <div class="total">
+                <div class="total-title">Jami</div>
+                <div class="total-price">₩0</div>
+              </div>
+              <button type="button" class="btn-buy">Sotib olish</button>
+              <!-- cart close -->
+              <img src="./assets/images/icons/bx-x.svg" id="close-cart" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header-top">
+        <div class="container">
+          <ul class="header-social-container">
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-youtube"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-whatsapp"></ion-icon>
+              </a>
+            </li>
+          </ul>
+          <div class="header-alert-news">
+            <p>
+              <b>Bepul yetkazib berish</b>
+              50.000₩ dan boshlab
+            </p>
+          </div>
+          <div class="header-top-actions">
+            <select name="language">
+              <option value="uz">Uzbek</option>
+              <option value="ru">Russia</option>
+              <option value="kr">Korean</option>
+              <option value="en-US">English</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-bottom-navigation">
+        <button class="action-btn" data-mobile-menu-open-btn>
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+        <button class="action-btn">
+          <ion-icon name="bag-handle-outline" id="cart-icon"></ion-icon>
+        </button>
+        <button class="action-btn" src="index.html">
+          <ion-icon name="home-outline"></ion-icon>
+        </button>
+        <button class="action-btn">
+          <ion-icon name="person-outline"></ion-icon>
+        </button>
+        <button class="action-btn" data-mobile-menu-open-btn>
+          <ion-icon name="grid-outline"></ion-icon>
+        </button>
+      </div>
+      <nav class="mobile-navigation-menu has-scrollbar" data-mobile-menu>
+        <div class="menu-top">
+          <h2 class="menu-title">Boshqalar</h2>
+          <button class="menu-close-btn" data-mobile-menu-close-btn>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+        </div>
+        <ul class="mobile-menu-category-list">
+          <li class="menu-category">
+            <a href="#" class="menu-title">Do'kon</a>
+          </li>
+          <li class="menu-category">
+            <a href="#" class="menu-title">Yordam</a>
+          </li>
+          <li class="menu-category">
+            <a href="#" class="menu-title">Biz haqimizda</a>
+          </li>
+          <li class="menu-category">
+            <button class="accordion-menu" data-accordion-btn>
+              <p class="menu-title">Sertifikatlar</p>
+              <div>
+                <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+              </div>
+            </button>
+            <ul class="submenu-category-list" data-accordion>
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">Kolbasa va Sosiskalar</a>
+              </li>
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">Go'sht</a>
+              </li>
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">Sut mahsulotlari</a>
+              </li>
+            </ul>
+          </li>
+          <li class="menu-category">
+            <a href="#" class="menu-title">Karyera</a>
+          </li>
+          <li class="menu-category">
+            <a href="#" class="menu-title">Hamkorlik</a>
+          </li>
+          <li class="menu-category">
+            <a href="#" class="menu-title">Yetkazib berish shartlari</a>
+          </li>
+          <li class="menu-category">
+            <a href="#" class="menu-title">Foydalanish shartlari</a>
+          </li>
+          <li class="menu-category">
+            <a href="#" class="menu-title">Maxfiylik siyosati</a>
+          </li>
+        </ul>
+        <div class="menu-bottom">
+          <ul class="menu-category-list">
+            <li class="menu-category">
+              <button class="accordion-menu" data-accordion-btn>
+                <p class="menu-title">TIL</p>
+                <ion-icon
+                  name="caret-back-outline"
+                  class="caret-back"
+                ></ion-icon>
+              </button>
+              <ul class="submenu-category-list" data-accordion>
+                <li class="submenu-category">
+                  <a href="#" class="submenu-title">UZBEK</a>
+                </li>
+                <li class="submenu-category">
+                  <a href="#" class="submenu-title">RUSSIAN</a>
+                </li>
+                <li class="submenu-category">
+                  <a href="#" class="submenu-title">KOREAN</a>
+                </li>
+                <li class="submenu-category">
+                  <a href="#" class="submenu-title">ENGLISH</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="menu-social-container">
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-youtube"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-whatsapp"></ion-icon>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- BANNER  -->
+
+    <div class="banner">
+      <div class="container">
+        <div class="slider">
+          <div class="myslide fade">
+            <img src="./assets/images/slide.jpeg" />
+          </div>
+
+          <div class="myslide fade">
+            <img src="./assets/images/slide1.png" />
+          </div>
+
+          <div class="myslide fade">
+            <img src="./assets/images/slide3.jpeg" />
+          </div>
+
+          <div class="myslide fade">
+            <img src="./assets/images/slide5.jpeg" />
+          </div>
+
+          <!-- onclick js -->
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT -->
+    <div class="product-container">
+      <div class="container">
+        <!-- SIDEBAR  -->
+        <div class="sidebar has-scrollbar" data-mobile-menu>
+          <div class="sidebar-category">
+            <div class="sidebar-top">
+              <h2 class="sidebar-title">Kategoriya</h2>
+              <button class="sidebar-close-btn" data-mobile-menu-close-btn>
+                <ion-icon name="close-outline"></ion-icon>
+              </button>
+            </div>
+            <ul class="sidebar-menu-category-list">
+              <li class="sidebar-menu-category">
+                <button class="sidebar-accordion-menu" data-accordion-btn>
+                  <div class="menu-title-flex">
+                    <img
+                      src="./assets/images/icons/big-sale.png"
+                      alt="clothes"
+                      class="menu-title-img"
+                    />
+                    <p class="menu-title">Big Sale %</p>
+                  </div>
+                  <div></div>
+                </button>
+              </li>
+              <li class="sidebar-menu-category">
+                <button class="sidebar-accordion-menu" data-accordion-btn>
+                  <div class="menu-title-flex">
+                    <img
+                      src="./assets/images/icons/proteins.png"
+                      alt="footwear"
+                      class="menu-title-img"
+                    />
+                    <p class="menu-title">Go'sht va Baliq</p>
+                  </div>
+                  <div>
+                    <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                    <ion-icon
+                      name="remove-outline"
+                      class="remove-icon"
+                    ></ion-icon>
+                  </div>
+                </button>
+                <ul class="sidebar-submenu-category-list" data-accordion>
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Mol (45)</p>
+                    </a>
+                  </li>
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Qo'y (32)</p>
+                    </a>
+                  </li>
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Baliq (35)</p>
+                    </a>
+                  </li>
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Tovuq va O'rdak (20)</p>
+                    </a>
+                  </li>
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Ot (3)</p>
+                    </a>
+                  </li>
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Kolbasa mahsulotlari (20)</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="sidebar-menu-category">
+                <button class="sidebar-accordion-menu" data-accordion-btn>
+                  <div class="menu-title-flex">
+                    <img
+                      src="./assets/images/icons/grocery-bag.png"
+                      alt="clothes"
+                      class="menu-title-img"
+                    />
+                    <p class="menu-title">Oziq-ovqat</p>
+                  </div>
+                  <div>
+                    <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                    <ion-icon
+                      name="remove-outline"
+                      class="remove-icon"
+                    ></ion-icon>
+                  </div>
+                </button>
+                <ul class="sidebar-submenu-category-list" data-accordion>
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Muzlatilgan mahsulotlar (46)</p>
+                    </a>
+                  </li>
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Sous va Yog'lar (33)</p>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Guruch va Ziravorlar (15)</p>
+                    </a>
+                  </li>
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Konserva mahsulotlar (18)</p>
+                    </a>
+                  </li>
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Sut mahsulotlar (20)</p>
+                    </a>
+                  </li>
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Dukkakli mahsulotlar (34)</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="sidebar-menu-category">
+                <button class="sidebar-accordion-menu" data-accordion-btn>
+                  <div class="menu-title-flex">
+                    <img
+                      src="./assets/images/icons/lunch-box.png"
+                      alt="perfume"
+                      class="menu-title-img"
+                    />
+
+                    <p class="menu-title">Tayyor yeguliklar</p>
+                  </div>
+
+                  <div>
+                    <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                    <ion-icon
+                      name="remove-outline"
+                      class="remove-icon"
+                    ></ion-icon>
+                  </div>
+                </button>
+
+                <ul class="sidebar-submenu-category-list" data-accordion>
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Non va Pishiriqlar (23)</p>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Kabob va Pitsa (12)</p>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Ramyonlar (50)</p>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Shirinlik va Desertlar (45)</p>
+                    </a>
+                  </li>
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Chaq-chuqlar (24)</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="sidebar-menu-category">
+                <button class="sidebar-accordion-menu" data-accordion-btn>
+                  <div class="menu-title-flex">
+                    <img
+                      src="./assets/images/icons/soft-drink.png"
+                      alt="cosmetics"
+                      class="menu-title-img"
+                    />
+                    <p class="menu-title">Ichimliklar</p>
+                  </div>
+                  <div>
+                    <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                    <ion-icon
+                      name="remove-outline"
+                      class="remove-icon"
+                    ></ion-icon>
+                  </div>
+                </button>
+                <ul class="sidebar-submenu-category-list" data-accordion>
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Choy (12)</p>
+                    </a>
+                  </li>
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Sharbat (16)</p>
+                    </a>
+                  </li>
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Gazli ichimliklar (23)</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="sidebar-menu-category">
+                <button class="sidebar-accordion-menu" data-accordion-btn>
+                  <div class="menu-title-flex">
+                    <img
+                      src="./assets/images/icons/harvest.png"
+                      alt="glasses"
+                      class="menu-title-img"
+                    />
+                    <p class="menu-title">Fresh & Fast</p>
+                  </div>
+                  <div></div>
+                </button>
+              </li>
+
+              <li class="sidebar-menu-category">
+                <button class="sidebar-accordion-menu" data-accordion-btn>
+                  <div class="menu-title-flex">
+                    <img
+                      src="./assets/images/icons/online-shopping.png"
+                      alt="bags"
+                      class="menu-title-img"
+                    />
+                    <p class="menu-title">Oila do'koni</p>
+                  </div>
+                  <div>
+                    <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                    <ion-icon
+                      name="remove-outline"
+                      class="remove-icon"
+                    ></ion-icon>
+                  </div>
+                </button>
+                <ul class="sidebar-submenu-category-list" data-accordion>
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Qishki buyumlar (18)</p>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Kiyim-kechak (33)</p>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Joynamozlar (8)</p>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-submenu-category">
+                    <a href="#" class="sidebar-submenu-title">
+                      <p class="product-name">Bolalar va Sport (15)</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <div class="product-showcase">
+            <h3 class="showcase-heading">Talabgir mahsulotlar</h3>
+
+            <div class="showcase-wrapper">
+              <div class="showcase-container">
+                <div class="showcase">
+                  <a href="#" class="showcase-img-box">
+                    <img
+                      src="./assets/images/img6.jpeg"
+                      alt="baby fabric shoes"
+                      width="75"
+                      height="75"
+                      class="showcase-img"
+                    />
+                  </a>
+                  <div class="showcase-content">
+                    <a href="#">
+                      <h4 class="showcase-title">Qurt</h4>
+                    </a>
+                    <div class="price-box">
+                      <del>$5.00</del>
+                      <p class="price">$4.00</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="showcase">
+                  <a href="#" class="showcase-img-box">
+                    <img
+                      src="./assets/images/img2.jpeg"
+                      alt="men's hoodies t-shirt"
+                      class="showcase-img"
+                      width="75"
+                      height="75"
+                    />
+                  </a>
+                  <div class="showcase-content">
+                    <a href="#">
+                      <h4 class="showcase-title">Mayanez</h4>
+                    </a>
+                    <div class="price-box">
+                      <del>$17.00</del>
+                      <p class="price">$7.00</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="showcase">
+                  <a href="#" class="showcase-img-box">
+                    <img
+                      src="./assets/images/img4.jpeg"
+                      alt="girls t-shirt"
+                      class="showcase-img"
+                      width="75"
+                      height="75"
+                    />
+                  </a>
+
+                  <div class="showcase-content">
+                    <a href="#">
+                      <h4 class="showcase-title">kakos crem</h4>
+                    </a>
+                    <div class="price-box">
+                      <del>$5.00</del>
+                      <p class="price">$3.00</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="showcase">
+                  <a href="#" class="showcase-img-box">
+                    <img
+                      src="./assets/images/img5.jpeg"
+                      alt="woolen hat for men"
+                      class="showcase-img"
+                      width="75"
+                      height="75"
+                    />
+                  </a>
+
+                  <div class="showcase-content">
+                    <a href="#">
+                      <h4 class="showcase-title">Sut</h4>
+                    </a>
+                    <div class="price-box">
+                      <del>$15.00</del>
+                      <p class="price">$12.00</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-box">
+          <!-- PRODUCT GRID -->
+          <div class="product-main">
+            <h1 class="title">Yangi mahsulotlar</h1>
+            <div class="product-grid">
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"></a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jackedtss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                    <button class="qoshish cart-mobile" type="button">
+                      <img
+                        src="./assets/images/icons/shopping-bag.png"
+                        class="add-cart__btn"
+                      />Qo'shish
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacdsketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jsxacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-main">
+            <h1 class="title">Chegirmalar</h1>
+            <div class="product-grid">
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">-15%</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jackedtss</span
+                    >
+                    <div class="product-price__box">
+                      <p class="price">$48.00</p>
+                      <del>700</del>
+                    </div>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">-15%</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacdsketss</span
+                    >
+                    <div class="product-price__box">
+                      <p class="price">$48.00</p>
+                      <del>700</del>
+                    </div>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">-15%</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jsxacketss</span
+                    >
+                    <div class="product-price__box">
+                      <p class="price">$48.00</p>
+                      <del>700</del>
+                    </div>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">-15%</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <div class="product-price__box">
+                      <p class="price">$48.00</p>
+                      <del>700</del>
+                    </div>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">-15%</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <div class="product-price__box">
+                      <p class="price">$48.00</p>
+                      <del>700</del>
+                    </div>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">-15%</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <div class="product-price__box">
+                      <p class="price">$48.00</p>
+                      <del>700</del>
+                    </div>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">-15%</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <div class="product-price__box">
+                      <p class="price">$48.00</p>
+                      <del>700</del>
+                    </div>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">-15%</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <div class="product-price__box">
+                      <p class="price">$48.00</p>
+                      <del>700</del>
+                    </div>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">-15%</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <div class="product-price__box">
+                      <p class="price">$48.00</p>
+                      <del>700</del>
+                    </div>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">-15%</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <div class="product-price__box">
+                      <p class="price">$48.00</p>
+                      <del>700</del>
+                    </div>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">-15%</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <div class="product-price__box">
+                      <p class="price">$48.00</p>
+                      <del>700</del>
+                    </div>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">-15%</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <div class="product-price__box">
+                      <p class="price">$48.00</p>
+                      <del>700</del>
+                    </div>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-main">
+            <h1 class="title">Aktaul rukunlar</h1>
+            <div class="btn-container">
+              <div class="buttons">
+                <a href="#" class="btn" data-filter="all">All</a>
+                <a href="#" class="btn" data-filter="food">Food</a>
+                <a href="#" class="btn" data-filter="meal">Meal</a>
+                <a href="#" class="btn" data-filter="drink">Drink</a>
+              </div>
+            </div>
+            <div class="aktual-products">
+              <div class="aktual-product meal">
+                <img
+                  class="aktual-img"
+                  src="./assets/images/img2.jpeg"
+                  alt="mayanez"
+                />
+                <div class="aktual-body">
+                  <p class="aktual-title">meal</p>
+                  <h1 class="aktual-price">₩ 2500</h1>
+                </div>
+              </div>
+              <div class="aktual-product food">
+                <img
+                  class="aktual-img"
+                  src="./assets/images/img2.jpeg"
+                  alt="mayanez"
+                />
+                <div class="aktual-body">
+                  <p class="aktual-title">food</p>
+                  <h1 class="aktual-price">₩ 2500</h1>
+                </div>
+              </div>
+              <div class="aktual-product drink">
+                <img
+                  class="aktual-img"
+                  src="./assets/images/img2.jpeg"
+                  alt="mayanez"
+                />
+                <div class="aktual-body">
+                  <p class="aktual-title">drink</p>
+                  <h1 class="aktual-price">₩ 2500</h1>
+                </div>
+              </div>
+              <div class="aktual-product drink">
+                <img
+                  class="aktual-img"
+                  src="./assets/images/img2.jpeg"
+                  alt="mayanez"
+                />
+                <div class="aktual-body">
+                  <p class="aktual-title">drink</p>
+                  <h1 class="aktual-price">₩ 2500</h1>
+                </div>
+              </div>
+              <div class="aktual-product meal">
+                <img
+                  class="aktual-img"
+                  src="./assets/images/img2.jpeg"
+                  alt="mayanez"
+                />
+                <div class="aktual-body">
+                  <p class="aktual-title">meal</p>
+                  <h1 class="aktual-price">₩ 2500</h1>
+                </div>
+              </div>
+              <div class="aktual-product food">
+                <img
+                  class="aktual-img"
+                  src="./assets/images/img2.jpeg"
+                  alt="mayanez"
+                />
+                <div class="aktual-body">
+                  <p class="aktual-title">food</p>
+                  <h1 class="aktual-price">₩ 2500</h1>
+                </div>
+              </div>
+              <div class="aktual-product food">
+                <img
+                  class="aktual-img"
+                  src="./assets/images/img2.jpeg"
+                  alt="mayanez"
+                />
+                <div class="aktual-body">
+                  <p class="aktual-title">food</p>
+                  <h1 class="aktual-price">₩ 2500</h1>
+                </div>
+              </div>
+              <div class="aktual-product food">
+                <img
+                  class="aktual-img"
+                  src="./assets/images/img2.jpeg"
+                  alt="mayanez"
+                />
+                <div class="aktual-body">
+                  <p class="aktual-title">food</p>
+                  <h1 class="aktual-price">₩ 2500</h1>
+                </div>
+              </div>
+              <div class="aktual-product food">
+                <img
+                  class="aktual-img"
+                  src="./assets/images/img2.jpeg"
+                  alt="mayanez"
+                />
+                <div class="aktual-body">
+                  <p class="aktual-title">food</p>
+                  <h1 class="aktual-price">₩ 2500</h1>
+                </div>
+              </div>
+              <div class="aktual-product food">
+                <img
+                  class="aktual-img"
+                  src="./assets/images/img2.jpeg"
+                  alt="mayanez"
+                />
+                <div class="aktual-body">
+                  <p class="aktual-title">food</p>
+                  <h1 class="aktual-price">₩ 2500</h1>
+                </div>
+              </div>
+              <div class="aktual-product food">
+                <img
+                  class="aktual-img"
+                  src="./assets/images/img2.jpeg"
+                  alt="mayanez"
+                />
+                <div class="aktual-body">
+                  <p class="aktual-title">food</p>
+                  <h1 class="aktual-price">₩ 2500</h1>
+                </div>
+              </div>
+              <div class="aktual-product food">
+                <img
+                  class="aktual-img"
+                  src="./assets/images/img2.jpeg"
+                  alt="mayanez"
+                />
+                <div class="aktual-body">
+                  <p class="aktual-title">food</p>
+                  <h1 class="aktual-price">₩ 2500</h1>
+                </div>
+              </div>
+              <div class="aktual-product food">
+                <img
+                  class="aktual-img"
+                  src="./assets/images/img2.jpeg"
+                  alt="mayanez"
+                />
+                <div class="aktual-body">
+                  <p class="aktual-title">food</p>
+                  <h1 class="aktual-price">₩ 2500</h1>
+                </div>
+              </div>
+              <div class="aktual-product food">
+                <img
+                  class="aktual-img"
+                  src="./assets/images/img2.jpeg"
+                  alt="mayanez"
+                />
+                <div class="aktual-body">
+                  <p class="aktual-title">food</p>
+                  <h1 class="aktual-price">₩ 2500</h1>
+                </div>
+              </div>
+              <div class="aktual-product food">
+                <img
+                  class="aktual-img"
+                  src="./assets/images/img2.jpeg"
+                  alt="mayanez"
+                />
+                <div class="aktual-body">
+                  <p class="aktual-title">food</p>
+                  <h1 class="aktual-price">₩ 2500</h1>
+                </div>
+              </div>
+              <div class="aktual-product food">
+                <img
+                  class="aktual-img"
+                  src="./assets/images/img2.jpeg"
+                  alt="mayanez"
+                />
+                <div class="aktual-body">
+                  <p class="aktual-title">food</p>
+                  <h1 class="aktual-price">₩ 2500</h1>
+                </div>
+              </div>
+              <div class="aktual-product food">
+                <img
+                  class="aktual-img"
+                  src="./assets/images/img2.jpeg"
+                  alt="mayanez"
+                />
+                <div class="aktual-body">
+                  <p class="aktual-title">food</p>
+                  <h1 class="aktual-price">₩ 2500</h1>
+                </div>
+              </div>
+              <div class="aktual-product food">
+                <img
+                  class="aktual-img"
+                  src="./assets/images/img2.jpeg"
+                  alt="mayanez"
+                />
+                <div class="aktual-body">
+                  <p class="aktual-title">food</p>
+                  <h1 class="aktual-price">₩ 2500</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-main">
+            <h1 class="title title-recommended">Tavsiya etilgan mahsulotlar</h1>
+            <div class="product-grid">
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jackedtss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacdsketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jsxacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <p class="showcase-badge">New</p>
+                  <div class="showcase-actions">
+                    <button class="btn-action">
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#"> </a>
+                  <div class="price-box">
+                    <img
+                      src="./assets/images/img.jpeg"
+                      alt="Mens Winter Leathers Jackets"
+                      width="300"
+                      class="product-img rasim"
+                    />
+                    <span class="showcase-title product-title"
+                      >Mens Winter Leathers Jacketss</span
+                    >
+                    <p class="price">$48.00</p>
+                    <img
+                      src="./assets/images/icons/shopping-bag.png"
+                      class="add-cart cart qoshish"
+                    />
+                  </div>
+                </div>
+                <div class="cart-mobile">
+                  <button type="button">Savatchaga qo'shish</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- PRODUCT GRID END -->
+
+          <!-- app section -->
+          <div class="app" id="app">
+            <div class="app-img">
+              <img src="./assets/images/mobile-app.png" alt="app" />
+            </div>
+            <div class="download-app__text">
+              <h1>Mobil ilovani yuklab olish</h1>
+              <p>
+                Janubiy Koreyada halol go'sht mahsulotlari, ichimliklar,
+                konserva va boshqa xil turdagi mahsulotlarni online harid qilish
+                va yetkazib berish platformasi.
+              </p>
+              <div class="download-btns">
+                <a href="#"
+                  ><img src="./assets/images/appstore.png" alt="AppStore"
+                /></a>
+                <a href="#"
+                  ><img
+                    src="./assets/images/googleplay.png"
+                    alt="GooglePlayMarket"
+                /></a>
+              </div>
+            </div>
+          </div>
+          <!-- app section end -->
+        </div>
+      </div>
+    </div>
+
+    <!--- FOOTER -->
+    <footer>
+      <div class="footer__container">
+        <div class="footer__logo">
+          <p class="logo footer__item">Lazzat<span>Food</span></p>
+          <div class="footer__social">
+            <ul class="footer-social__items">
+              <li>
+                <a href="#">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <ion-icon name="logo-youtube"></ion-icon>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <ion-icon name="logo-whatsapp"></ion-icon>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer__links">
+          <strong>Serifikatlar</strong>
+          <ul>
+            <li><a href="#">Kolbasa va Sosiskalar</a></li>
+            <li><a href="#">Go'sht</a></li>
+            <li><a href="#">Sut mahsulotlari</a></li>
+            <li><a href="#">Biz haqimizda</a></li>
+          </ul>
+        </div>
+        <div class="footer__links">
+          <strong>Xizmat shartlari va<br />siyosati</strong>
+          <ul>
+            <li><a href="#">Foydalanish shartlari</a></li>
+            <li><a href="#">Maxfiylik siyosati</a></li>
+            <li><a href="#">Yetkazib berish shartlari</a></li>
+            <li><a href="#">Hamkorlik</a></li>
+          </ul>
+        </div>
+        <div class="footer__links f__contact">
+          <strong>Biz bilan bog'laning</strong>
+          <ul>
+            <li><a href="#">PLUS ALPHA TRADING CO.LTD</a></li>
+            <li><a href="#">Telefon : (+82) 010 5448 9811</a></li>
+            <li><a href="#">Litsenziya : 842-85-01676 </a></li>
+            <li><a href="#">Email : obidjonov@naver.com</a></li>
+            <li><a href="#">Email : 경산시 둥지로 23 (조영동, 수정빌)</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/cart.js"></script>
+    <!--- ionicon link -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
