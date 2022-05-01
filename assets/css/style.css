@@ -373,7 +373,7 @@ body::-webkit-scrollbar-thumb:hover {
   align-items: center;
 }
 .div .btn-bottom {
-  font-size: 14px;
+  font-size: 13px;
 }
 .mobile-bottom-navigation .action-btn {
   position: relative;
@@ -1761,7 +1761,7 @@ footer {
     font-size: 1.3rem;
   }
   .buttons .btn {
-    font-size: 13px;
+    font-size: 14px;
   }
   .aktual-body {
     right: 30px;
