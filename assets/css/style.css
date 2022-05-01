@@ -741,7 +741,6 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .sidebar .showcase {
-  display: flex;
   align-items: center;
   gap: 15px;
 }
