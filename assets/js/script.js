@@ -22,7 +22,7 @@ function currentSlide(n) {
 }
 function resetTimer() {
   clearInterval(timer);
-  timer = setInterval(autoSlide, 4500);
+  timer = setInterval(autoSlide, 4100);
 }
 
 function slideFun(n) {
@@ -89,7 +89,7 @@ for (let i = 0; i < accordionBtn.length; i++) {
 
 // filter js
 const btns = document.querySelectorAll(".btn");
-const storeProducts = document.querySelectorAll(".aktual-product");
+const storeProducts = document.querySelectorAll(".showcase");
 
 for (let i = 0; i < btns.length; i++) {
   btns[i].addEventListener("click", (e) => {
