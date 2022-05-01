@@ -887,8 +887,8 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .product-grid .showcase-title {
-  color: var(--sonic-silver);
-  font-size: var(--fs-8);
+  color: hsl(0deg 0% 18%);
+  font-size: 15px;
   font-weight: var(--weight-300);
   margin-bottom: 10px;
   transition: var(--transition-timing);
