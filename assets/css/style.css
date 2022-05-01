@@ -377,7 +377,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .mobile-bottom-navigation .action-btn {
   position: relative;
-  font-size: 22px;
+  font-size: 20px;
   color: var(--eerie-black);
   padding: 2px 10px 6px 10px;
 }
