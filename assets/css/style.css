@@ -990,6 +990,9 @@ body::-webkit-scrollbar-thumb:hover {
 .buttons .btn.active {
   background-color: rgba(41, 255, 41, 0.897);
 }
+.buttons .btn.actives {
+  border-bottom: 2px solid #43bb59;
+}
 .buttons .btn:hover {
   border-bottom: 2px solid #43bb59;
 }
