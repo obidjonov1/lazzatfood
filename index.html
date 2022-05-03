@@ -29,6 +29,7 @@
         <div class="container">
           <a href="index.html" class="header-logo">
             <p class="logo">Lazzat<span>Food</span></p>
+            <img src="./assets/images/icons/bell.png">
           </a>
           <div class="header-search-container">
             <input
@@ -37,32 +38,9 @@
               class="search-field"
               placeholder="Izlash, misol uchun kolbasa..."
             />
-            
-          </div>
-          <div class="header-user-actions">
-            <button class="action-btn">
-              <ion-icon name="call-outline"></ion-icon>
+            <button class="search-btn">
+              <ion-icon name="search-outline"></ion-icon>
             </button>
-            <a href="help.html" class="help">Yordam</a>
-            <button class="action-btn">
-              <ion-icon name="person-outline"></ion-icon>
-            </button>
-            <button class="action-btn">
-              <ion-icon name="bag-handle-outline" class="cart-icon"></ion-icon>
-              <!-- <span class="count">0</span> -->
-            </button>
-            <div class="order-cart">
-              <div class="cart-title">Savatcha</div>
-              <div class="cart-content"></div>
-              <!-- total -->
-              <div class="total">
-                <div class="total-title">Jami</div>
-                <div class="total-price">₩0</div>
-              </div>
-              <button type="button" class="btn-buy">Sotib olish</button>
-              <!-- cart close -->
-              <img src="./assets/images/icons/bx-x.svg" id="close-cart" />
-            </div>
           </div>
         </div>
       </div>
@@ -95,9 +73,9 @@
           </button>
           <span class="btn-bottom">Savatcha</span>
         </div>
-        <div class="div">
+        <div class="div icon-active">
           <a href="./index.html" class="action-btn">
-            <ion-icon name="home-outline"></ion-icon>
+            <ion-icon class="icon-active" name="home-outline"></ion-icon>
           </a>
           <span class="btn-bottom">Asosiy</span>
         </div>
@@ -608,10 +586,30 @@
             <h1 class="title">Kategoriya</h1>
             <div class="btn-container">
               <div class="buttons">
-                <a href="#" class="btn" data-filter="all">Hammasi</a>
-                <a href="#" class="btn" data-filter="food">Tayyor mahsulotlar</a>
-                <a href="#" class="btn" data-filter="meal">Go'sht</a>
-                <a href="#" class="btn" data-filter="drink">Ichimliklar</a>
+                <div class="filters">
+                  <img
+                      src="./assets/images/icons/grocery-bag.png"
+                      class="filter filter-first"
+                    />
+                    <a href="#" class="btn activ" data-filter="all">Hammasi</a>
+                </div>
+                <div class="filters">
+                  <img src="./assets/images/icons/lunch-box.png"
+                        class="filter filter-one"
+                      />
+                    <a href="#" class="btn" data-filter="food">Tayyor mahsulotlar</a>
+                </div>
+                <div class="filters">
+                  <img src="./assets/images/icons/proteins.png"
+                        class="filter"
+                      />
+                    <a href="#" class="btn" data-filter="meal">Go'sht</a>
+                </div>
+                <div class="filters">
+                  <img src="./assets/images/icons/soft-drink.png" class="filter filter-two"
+                      />
+                    <a href="#" class="btn" data-filter="drink">Ichimliklar</a>
+                </div>
               </div>
             <div class="product-grid">
               <div class="showcase meal">
