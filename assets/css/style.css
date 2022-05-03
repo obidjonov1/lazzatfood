@@ -154,7 +154,7 @@ body::-webkit-scrollbar-thumb:hover {
   cursor: pointer;
   transition: var(--transition-timing);
   font-size: 14px;
-  border-radius: 8px;
+  border-radius: 6px;
 }
 .header-top-actions select:hover {
   color: var(--eerie-black);
