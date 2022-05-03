@@ -167,7 +167,7 @@ body::-webkit-scrollbar-thumb:hover {
   text-transform: capitalize;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--cultured);
-  margin-bottom: 30px;
+  margin-bottom: 70px;
   background: url("/assets/images/bg-title.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -210,6 +210,14 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .header-logo {
   margin-bottom: 20px;
+  position: relative;
+}
+.header-logo img {
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  top: 9px;
+  right: 12px;
 }
 .logo {
   font-size: 1.8rem;
@@ -374,6 +382,9 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .div .btn-bottom {
   font-size: 13px;
+}
+.icon-active {
+  color: coral;
 }
 .mobile-bottom-navigation .action-btn {
   position: relative;
@@ -789,7 +800,6 @@ body::-webkit-scrollbar-thumb:hover {
 /*-----------------------------------*\
   #PRODUCT GRID
 \*-----------------------------------*/
-
 .product-main {
   margin-bottom: 30px;
 }
@@ -802,7 +812,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .product-grid .showcase {
-  border: 1px solid var(--cultured);
+  border: 1px solid hsl(0, 0%, 88%);
   border-radius: var(--border-radius-md);
   overflow: hidden;
   transition: var(--transition-timing);
@@ -1507,35 +1517,7 @@ footer {
     background: var(--color);
     color: var(--white);
   }
-  .header-user-actions {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  .header-user-actions .action-btn {
-    position: relative;
-    font-size: 27px;
-    color: var(--onyx);
-    padding: 5px;
-  }
-  .header-user-actions .help {
-    font-size: 18px;
-    margin-left: -18px;
-    text-decoration: underline;
-    cursor: pointer;
-  }
-  .header-user-actions .count {
-    position: absolute;
-    top: -2px;
-    right: -3px;
-    background: var(--main-color);
-    color: var(--white);
-    font-size: 12px;
-    font-weight: var(--weight-500);
-    line-height: 1;
-    padding: 2px 4px;
-    border-radius: 20px;
-  }
+
   .mobile-bottom-navigation {
     display: none;
   }
@@ -1659,6 +1641,29 @@ footer {
   .buttons .btn {
     padding: 0 5px 15px;
   }
+  /* .buttons .btn:nth-child(1) {
+    border-bottom: 2px solid #43bb59;
+  } */
+  .filters {
+    position: relative;
+  }
+  .filter {
+    position: absolute;
+    top: -60px;
+    border-radius: 50%;
+    padding: 5px;
+    background: rgb(244, 244, 244);
+    width: 50px;
+  }
+  .filter-first {
+    left: 13px;
+  }
+  .filter-one {
+    right: 43px;
+  }
+  .filter-two {
+    right: 15px;
+  }
   .aktual-products {
     grid-template-columns: 1fr 1fr;
   }
@@ -1762,6 +1767,7 @@ footer {
   }
   .buttons .btn {
     font-size: 14px;
+    position: relative;
   }
   .aktual-body {
     right: 30px;
