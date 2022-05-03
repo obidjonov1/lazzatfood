@@ -1794,6 +1794,8 @@ footer {
   .about-us__title {
     margin-bottom: 7rem;
   }
+  .buttons .btn {
+    padding: 0 4px 15px;
 }
 
 @media only screen and (max-width: 375px) {
