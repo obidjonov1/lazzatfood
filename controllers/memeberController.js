@@ -18,10 +18,10 @@ memberController.signup = async (req, res) => {
     res.cookie("access_token", token, {
       // tokendagi vaqt bilan bir hil bo'lishi kerak
       maxAge: 6 * 3600 * 1000,
-      httpOnly: true,
+      httpOnly: false,
     });
 
-    res.json({ state: "succeed", data: new_member });
+    res.json({ state: "success", data: new_member });
   } catch (err) {
     console.log(`ERROR: cont/signup ${err.message}`);
     res.json({ state: "fail", message: err.message });
@@ -42,9 +42,9 @@ memberController.login = async (req, res) => {
     res.cookie("access_token", token, {
       // tokendagi vaqt bilan bir hil bo'lishi kerak
       maxAge: 6 * 3600 * 1000,
-      httpOnly: true,
+      httpOnly: false,
     });
-    res.json({ state: "succeed", data: result });
+    res.json({ state: "success", data: result });
   } catch (err) {
     console.log(`ERROR: cont/login ${err.message}`);
     res.json({ state: "fail", message: err.message });
@@ -55,7 +55,7 @@ memberController.logout = (req, res) => {
   console.log("GET cont/logout");
   res.cookie("access_token", null, { maxAge: 0, httpOnly: true });
 
-  res.json({ state: "succeed", data: "logout successfuly!" });
+  res.json({ state: "success", data: "logout successfuly!" });
 };
 
 // JWT
@@ -92,7 +92,7 @@ memberController.checkMyAuthentication = (req, res) => {
     const member = token ? jwt.verify(token, process.env.SECRET_TOKEN) : null;
     assert.ok(member, Definer.auth_err4); // <- memberni objectni olyabmiz uni ichida(id, nick_name...[63])
 
-    res.json({ state: "succeed", data: member });
+    res.json({ state: "success", data: member });
   } catch (err) {
     throw err;
   }
@@ -107,9 +107,50 @@ memberController.getChosenMember = async (req, res) => {
     // .getChosenMemberData(kim reqni amalga oshiryapti, kimni ko'rmoqchi)
     const result = await member.getChosenMemberData(req.member, id);
 
-    res.json({ state: "Succeeded", data: result });
+    res.json({ state: "success", data: result });
   } catch (err) {
     console.log(`ERROR: cont/getChosenMember ${err.message}`);
+    res.json({ state: "fail", message: err.message });
+  }
+};
+
+memberController.likeMemberChosen = async (req, res) => {
+  try {
+    console.log("POST cont/likeMemberChosen");
+    assert.ok(req.member, Definer.auth_err5);
+
+    const member = new Member(),
+      like_ref_id = req.body.like_ref_id,
+      group_type = req.body.group_type;
+
+    const result = await member.likeChosenItemByMemeber(
+      req.member,
+      like_ref_id,
+      group_type
+    );
+
+    res.json({ state: "success", data: result });
+  } catch (err) {
+    console.log(`ERROR: cont/likeMemberChosen ${err.message}`);
+    res.json({ state: "fail", message: err.message });
+  }
+};
+
+memberController.updateMember = async (req, res) => {
+  try {
+    console.log("POST cont/updateMember");
+    assert.ok(req.member, Definer.auth_err3);
+
+    const member = new Member();
+    const result = await member.updateMemberData(
+      req.member?._id,
+      req.body,
+      req.file
+    );
+
+    res.json({ state: "success", data: result });
+  } catch (err) {
+    console.log(`ERROR: cont/updateMember ${err.message}`);
     res.json({ state: "fail", message: err.message });
   }
 };

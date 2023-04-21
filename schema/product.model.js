@@ -55,7 +55,7 @@ const productSchema = new mongoose.Schema(
       },
     },
     product_volume: {
-      type: String,
+      type: Number,
       default: 1,
       // product_sizega tegishli bo'lmasa 'product_volume' uchun
       required: function () {

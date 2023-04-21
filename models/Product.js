@@ -1,5 +1,8 @@
 const assert = require("assert");
-const { shapeIntoMongooseObjectid } = require("../lib/config");
+const {
+  shapeIntoMongooseObjectId,
+  lookup_auth_member_liked,
+} = require("../lib/config");
 const Definer = require("../lib/mistake");
 const ProductModel = require("../schema/product.model");
 const Member = require("./Member");
@@ -11,11 +14,11 @@ class Product {
 
   async getAllProductsData(member, data) {
     try {
-      const auth_mb_id = shapeIntoMongooseObjectid(member?._id);
+      const auth_mb_id = shapeIntoMongooseObjectId(member?._id);
 
       let match = { product_status: "PROCESS" };
       if (data.restaurant_mb_id) {
-        match["restaurant_mb_id"] = shapeIntoMongooseObjectid(
+        match["restaurant_mb_id"] = shapeIntoMongooseObjectId(
           data.restaurant_mb_id
         );
         match["product_collection"] = data.product_collection;
@@ -32,7 +35,8 @@ class Product {
           { $sort: sort },
           { $skip: (data.page * 1 - 1) * data.limit },
           { $limit: data.limit * 1 },
-          // todo: Check auth member product likes
+          // auth member ko'rayotgan itemiga like bosganligini check qilish ->
+          lookup_auth_member_liked(auth_mb_id),
         ])
         .exec();
 
@@ -47,26 +51,27 @@ class Product {
 
   async getChosenProductData(member, id) {
     try {
-      const auth_mb_id = shapeIntoMongooseObjectid(member?._id);
-      id = shapeIntoMongooseObjectid(id);
+      const auth_mb_id = shapeIntoMongooseObjectId(member?._id);
+      id = shapeIntoMongooseObjectId(id);
 
       // login bo'lmagan bo'lsa bu yerdan o'tib ketadi -->
       // 1ta productni viewlarni '1+view' qilish ->
       if (member) {
         const member_obj = new Member();
-        member_obj.viewChosenItemByMember(member, id, "product");
+        await member_obj.viewChosenItemByMember(member, id, "product");
       }
 
       const result = await this.productModel
         // productlarning statusi "PROCESS" bo'lsa shularni olib ber ->
         .aggregate([
           { $match: { _id: id, product_status: "PROCESS" } },
-          // todo: Check auth member product likes
+          // auth member ko'rayotgan itemiga like bosganligini check qilish ->
+          lookup_auth_member_liked(auth_mb_id),
         ])
         .exec();
 
       assert.ok(result, Definer.general_err1);
-      return result;
+      return result[0];
     } catch (err) {
       throw err;
     }
@@ -75,7 +80,7 @@ class Product {
   async getAllProductsDataResto(member) {
     try {
       // login bo'lgan memberning idsi orqali productModuldan -> [16] ->
-      member._id = shapeIntoMongooseObjectid(member._id);
+      member._id = shapeIntoMongooseObjectId(member._id);
       const result = await this.productModel.find({
         // restaurant_mb_id = member._id bo'lgan hammasini topib beradi -> [20]
         restaurant_mb_id: member._id,
@@ -90,7 +95,7 @@ class Product {
 
   async addNewProductData(data, member) {
     try {
-      data.restaurant_mb_id = shapeIntoMongooseObjectid(member._id);
+      data.restaurant_mb_id = shapeIntoMongooseObjectId(member._id);
 
       const new_product = this.productModel(data);
       const result = await new_product.save();
@@ -104,8 +109,8 @@ class Product {
 
   async updateChosenProductData(id, updated_data, mb_id) {
     try {
-      id = shapeIntoMongooseObjectid(id);
-      mb_id = shapeIntoMongooseObjectid(mb_id);
+      id = shapeIntoMongooseObjectId(id);
+      mb_id = shapeIntoMongooseObjectId(mb_id);
 
       const result = await this.productModel
         .findOneAndUpdate(

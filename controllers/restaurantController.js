@@ -6,6 +6,37 @@ const Restaurant = require("../models/Restaurant");
 
 let restaurantController = module.exports;
 
+restaurantController.getRestaurants = async (req, res) => {
+  try {
+    console.log("GET: cont/getRestaurants");
+    const data = req.query,
+      restaurant = new Restaurant(),
+      result = await restaurant.getRestaurantsData(req.member, data);
+    res.json({ state: "success", data: result });
+  } catch (err) {
+    console.log(`ERROR: cont/getRestaurants, ${err.message}`);
+    res.json({ state: "fail", message: err.message });
+  }
+};
+
+restaurantController.getChosenRestaurant = async (req, res) => {
+  try {
+    console.log("GET: cont/getChosenRestaurant");
+    const id = req.params.id,
+      restaurant = new Restaurant(),
+      result = await restaurant.getChosenRestaurantData(req.member, id);
+
+    res.json({ state: "success", data: result });
+  } catch (err) {
+    console.log(`ERROR: cont/getChosenRestaurant, ${err.message}`);
+    res.json({ state: "fail", message: err.message });
+  }
+};
+
+/************************************
+ *       BSSR RELATED METHODS       *
+ ***********************************/
+
 restaurantController.home = (req, res) => {
   try {
     console.log("GET: cont/home");
@@ -121,7 +152,7 @@ restaurantController.validateAuthRestaurant = (req, res, next) => {
 
 restaurantController.checkSessions = (req, res) => {
   if (req.session.member) {
-    res.json({ state: "succeed", data: req.session.member });
+    res.json({ state: "success", data: req.session.member });
   } else {
     res.json({ state: "fail", message: "You are not authenticated" });
   }
@@ -146,7 +177,6 @@ restaurantController.getAllRestaurants = async (req, res) => {
 
     const restaurant = new Restaurant();
     const restaurants_data = await restaurant.getAllRestaurantsData();
-    console.log("res_data:", restaurants_data);
     // type = "RESTAURANT" hammasini all-restaurant.ejsga chiqarib beradi
     res.render("all-restaurants", { restaurants_data: restaurants_data });
   } catch (err) {
