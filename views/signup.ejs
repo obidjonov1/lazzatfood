@@ -77,7 +77,7 @@
         <div class="media_frame">
           <img src="/images/default_resto.jpg" class="upload_img_frame" />
           <div class="upload_container">
-            <span class="media_text">Restaurant rasmi</span>
+            <span class="media_text">Market rasmi</span>
             <div class="filebox bs3-primary preview-image">
               <input
                 class="upload-name"
@@ -88,7 +88,7 @@
               <input
                 type="file"
                 id="input_file"
-                name="restaurant_img"
+                name="market_img"
                 class="upload-hidden form-control-file restaurant_img"
               />
             </div>
@@ -147,7 +147,7 @@
       const mb_password = $(".mb_password").val();
       const mb_confirm_password = $(".mb_confirm_password").val();
       // inputga file qanday qilib tekshiramiz ->
-      const restaurant_img = $(".restaurant_img").get(0).files[0] ?? null;
+      const market_img = $(".market_img").get(0).files[0] ?? null;
 
       if (
         mb_nick == "" ||
@@ -162,7 +162,7 @@
         return false;
       }
 
-      if (!restaurant_img) {
+      if (!market_img) {
         alert("Iltimos rasimni yuklang!");
         return false;
       }

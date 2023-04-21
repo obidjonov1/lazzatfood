@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const memberController = require("./controllers/memeberController");
 const productController = require("./controllers/productController");
-const restaurantController = require("./controllers/restaurantController");
+const marketController = require("./controllers/marketController");
 const orderController = require("./controllers/orderController");
 const followController = require("./controllers/followController");
 const communityController = require("./controllers/communityController");
@@ -48,17 +48,17 @@ router.get(
   productController.getChosenProduct
 );
 
-// Restaurant related routers
+// Market related routers
 router.get(
-  "/restaurants",
+  "/markets",
   memberController.retrieveAuthMember,
-  restaurantController.getRestaurants
+  marketController.getMarkets
 );
 
 router.get(
-  "/restaurants/:id",
+  "/markets/:id",
   memberController.retrieveAuthMember,
-  restaurantController.getChosenRestaurant
+  marketController.getChosenMarket
 );
 
 // Order related routers

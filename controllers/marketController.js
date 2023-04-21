@@ -2,33 +2,33 @@ const assert = require("assert");
 const Definer = require("../lib/mistake");
 const Member = require("../models/Member");
 const Product = require("../models/Product");
-const Restaurant = require("../models/Restaurant");
+const Market = require("../models/Market");
 
-let restaurantController = module.exports;
+let marketController = module.exports;
 
-restaurantController.getRestaurants = async (req, res) => {
+marketController.getMarkets = async (req, res) => {
   try {
-    console.log("GET: cont/getRestaurants");
+    console.log("GET: cont/getMarkets");
     const data = req.query,
-      restaurant = new Restaurant(),
-      result = await restaurant.getRestaurantsData(req.member, data);
+      market = new Market(),
+      result = await market.getMarketsData(req.member, data);
     res.json({ state: "success", data: result });
   } catch (err) {
-    console.log(`ERROR: cont/getRestaurants, ${err.message}`);
+    console.log(`ERROR: cont/getMarkets, ${err.message}`);
     res.json({ state: "fail", message: err.message });
   }
 };
 
-restaurantController.getChosenRestaurant = async (req, res) => {
+marketController.getChosenMarket = async (req, res) => {
   try {
-    console.log("GET: cont/getChosenRestaurant");
+    console.log("GET: cont/getChosenMarket");
     const id = req.params.id,
-      restaurant = new Restaurant(),
-      result = await restaurant.getChosenRestaurantData(req.member, id);
+      market = new Market(),
+      result = await market.getChosenMarketData(req.member, id);
 
     res.json({ state: "success", data: result });
   } catch (err) {
-    console.log(`ERROR: cont/getChosenRestaurant, ${err.message}`);
+    console.log(`ERROR: cont/getChosenMarket, ${err.message}`);
     res.json({ state: "fail", message: err.message });
   }
 };
@@ -37,7 +37,7 @@ restaurantController.getChosenRestaurant = async (req, res) => {
  *       BSSR RELATED METHODS       *
  ***********************************/
 
-restaurantController.home = (req, res) => {
+marketController.home = (req, res) => {
   try {
     console.log("GET: cont/home");
     res.render("home-page");
@@ -47,36 +47,36 @@ restaurantController.home = (req, res) => {
   }
 };
 
-restaurantController.getMyRestaurantProducts = async (req, res) => {
+marketController.getMyMarketProducts = async (req, res) => {
   try {
-    console.log("GET: cont/getMyRestaurantProducts");
+    console.log("GET: cont/getMyMarketProducts");
     const product = new Product();
     const data = await product.getAllProductsDataResto(res.locals.member);
-    // login bo'lgan restaurantni hamma productlarini olib "restaurant-menu.ejs" ga yuboradi
-    res.render("restaurant-menu", { restaurant_data: data });
+    // login bo'lgan marketni hamma productlarini olib "market-menu.ejs" ga yuboradi
+    res.render("market-menu", { market_data: data });
   } catch (err) {
-    console.log(`ERROR: cont/getMyRestaurantProducts ${err.message}`);
+    console.log(`ERROR: cont/getMyMarketProducts ${err.message}`);
     res.redirect("/resto");
   }
 };
 
-restaurantController.getSignupMyRestaurant = async (req, res) => {
+marketController.getSignupMyMarket = async (req, res) => {
   try {
-    console.log("GET: cont/getSignupMyRestaurant");
+    console.log("GET: cont/getSignupMyMarket");
     res.render("signup");
   } catch (err) {
-    console.log(`ERROR: cont/getSignupMyRestaurant ${err.message}`);
+    console.log(`ERROR: cont/getSignupMyMarket ${err.message}`);
     res.json({ state: "fail", message: err.message });
   }
 };
 
-restaurantController.signupProcess = async (req, res) => {
+marketController.signupProcess = async (req, res) => {
   try {
     console.log("POST: cont/signupProcess");
     assert(req.file, Definer.general_err3);
 
     let new_member = req.body;
-    new_member.mb_type = "RESTAURANT";
+    new_member.mb_type = "MARKET";
     // yuklangan image ->
     new_member.mb_image = req.file.path;
 
@@ -94,17 +94,17 @@ restaurantController.signupProcess = async (req, res) => {
   }
 };
 
-restaurantController.getLoginMyRestaurant = async (req, res) => {
+marketController.getLoginMyMarket = async (req, res) => {
   try {
-    console.log("GET: cont/getLoginMyRestaurant");
+    console.log("GET: cont/getLoginMyMarket");
     res.render("login-page");
   } catch (err) {
-    console.log(`ERROR: cont/getLoginMyRestaurant ${err.message}`);
+    console.log(`ERROR: cont/getLoginMyMarket ${err.message}`);
     res.json({ state: "fail", message: err.message });
   }
 };
 
-restaurantController.loginProcess = async (req, res) => {
+marketController.loginProcess = async (req, res) => {
   try {
     console.log("POST: cont/loginProcess");
     const data = req.body,
@@ -117,7 +117,7 @@ restaurantController.loginProcess = async (req, res) => {
     req.session.save(function () {
       // redirect = bu router_bssr.js(23) dan davom etadi
       result.mb_type === "ADMIN"
-        ? res.redirect("/resto/all-restaurant")
+        ? res.redirect("/resto/all-market")
         : res.redirect("/resto/products/menu");
     });
   } catch (err) {
@@ -126,7 +126,7 @@ restaurantController.loginProcess = async (req, res) => {
   }
 };
 
-restaurantController.logout = (req, res) => {
+marketController.logout = (req, res) => {
   try {
     console.log("GET cont/logout");
     // destroy() sessionni delete qiladi va "home" ga yuboradi
@@ -139,18 +139,18 @@ restaurantController.logout = (req, res) => {
   }
 };
 
-restaurantController.validateAuthRestaurant = (req, res, next) => {
-  if (req.session?.member?.mb_type === "RESTAURANT") {
+marketController.validateAuthMarket = (req, res, next) => {
+  if (req.session?.member?.mb_type === "MARKET") {
     req.member = req.session.member;
     next();
   } else
     res.json({
       state: "fail",
-      message: "Only authenticated members with restaurant type",
+      message: "Only authenticated members with market type",
     });
 };
 
-restaurantController.checkSessions = (req, res) => {
+marketController.checkSessions = (req, res) => {
   if (req.session.member) {
     res.json({ state: "success", data: req.session.member });
   } else {
@@ -158,7 +158,7 @@ restaurantController.checkSessions = (req, res) => {
   }
 };
 
-restaurantController.validateAdmin = (req, res, next) => {
+marketController.validateAdmin = (req, res, next) => {
   if (req.session?.member?.mb_type === "ADMIN") {
     req.member = req.session.member;
     next();
@@ -171,29 +171,29 @@ restaurantController.validateAdmin = (req, res, next) => {
   }
 };
 
-restaurantController.getAllRestaurants = async (req, res) => {
+marketController.getAllMarkets = async (req, res) => {
   try {
-    console.log("GET cont/getAllRestaurants");
+    console.log("GET cont/getAllMarkets");
 
-    const restaurant = new Restaurant();
-    const restaurants_data = await restaurant.getAllRestaurantsData();
-    // type = "RESTAURANT" hammasini all-restaurant.ejsga chiqarib beradi
-    res.render("all-restaurants", { restaurants_data: restaurants_data });
+    const market = new Market();
+    const markets_data = await market.getAllMarketsData();
+    // type = "MARKET" hammasini all-markets.ejsga chiqarib beradi
+    res.render("all-markets", { markets_data: markets_data });
   } catch (err) {
-    console.log(`ERROR: cont/getAllRestaurants, ${err.message}`);
+    console.log(`ERROR: cont/getAllMarkets, ${err.message}`);
     res.json({ state: "fail", message: err.message });
   }
 };
 
-restaurantController.updateRestaurantByAdmin = async (req, res) => {
+marketController.updateMarketByAdmin = async (req, res) => {
   try {
-    console.log("GET cont/updateRestaurantByAdmin");
-    const restaurant = new Restaurant();
-    const result = await restaurant.updateRestaurantByAdminData(req.body);
+    console.log("GET cont/updateMarketByAdmin");
+    const market = new Market();
+    const result = await market.updateMarketByAdminData(req.body);
     // update bo'lgan qiymatni res.jsonga path qilyabmiz ->
     await res.json({ state: "success", data: result });
   } catch (err) {
-    console.log(`ERROR: cont/updateRestaurantByAdmin, ${err.message}`);
+    console.log(`ERROR: cont/updateMarketByAdmin, ${err.message}`);
     res.json({ state: "fail", message: err.message });
   }
 };

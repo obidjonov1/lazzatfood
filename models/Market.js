@@ -8,16 +8,16 @@ const Definer = require("../lib/mistake");
 const MemberModel = require("../schema/member.model");
 const Member = require("./Member");
 
-class Restaurant {
+class Market {
   constructor() {
     this.memberModel = MemberModel;
   }
 
-  async getRestaurantsData(member, data) {
+  async getMarketsData(member, data) {
     try {
       const auth_mb_id = shapeIntoMongooseObjectId(member?._id);
       // searching
-      let match = { mb_type: "RESTAURANT", mb_status: "ACTIVE" };
+      let match = { mb_type: "MARKET", mb_status: "ACTIVE" };
       let aggregationQuery = []; // aggregateni ichidagi "query"ga PASS qilish uchun
       data.limit = data["limit"] * 1; // stringni -> numberga =
       data.page = data["page"] * 1; // stringni -> numberga =
@@ -26,7 +26,7 @@ class Restaurant {
         case "top":
           match["mb_top"] = "Y";
           aggregationQuery.push({ $match: match });
-          aggregationQuery.push({ $sample: { size: data.limit } }); // 4ta restaurant limit
+          aggregationQuery.push({ $sample: { size: data.limit } }); // 4ta market limit
           break;
         case "random":
           aggregationQuery.push({ $match: match });
@@ -52,7 +52,7 @@ class Restaurant {
     }
   }
 
-  async getChosenRestaurantData(member, id) {
+  async getChosenMarketData(member, id) {
     try {
       // memberSchema modelni ichida "query" qilyotganda ishlatamiz ->
       id = shapeIntoMongooseObjectId(id);
@@ -78,11 +78,11 @@ class Restaurant {
     }
   }
 
-  async getAllRestaurantsData() {
+  async getAllMarketsData() {
     try {
       let result = await this.memberModel
         .find({
-          mb_type: "RESTAURANT",
+          mb_type: "MARKET",
         })
         .exec();
 
@@ -93,7 +93,7 @@ class Restaurant {
     }
   }
 
-  async updateRestaurantByAdminData(update_data) {
+  async updateMarketByAdminData(update_data) {
     try {
       const id = shapeIntoMongooseObjectId(update_data?.id);
       const result = await this.memberModel
@@ -113,4 +113,4 @@ class Restaurant {
   }
 }
 
-module.exports = Restaurant;
+module.exports = Market;

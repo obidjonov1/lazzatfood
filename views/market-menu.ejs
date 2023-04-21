@@ -35,13 +35,17 @@
               <th scope="col">Taom holati</th>
             </thead>
 
-            <% restaurant_data.map((value, key) => { %>
+            <% market_data.map((value, key) => { %>
             <tbody style="background: white; text-align: center">
               <td><%= key +1 %></td>
               <td><%= value.product_name %></td>
               <td><%= value.product_collection %></td>
               <td>
                 <%= value.product_collection === "drink" ? value.product_volume
+                : value.product_size %>
+              </td>
+              <td>
+                <%= value.product_collection === "meat" ? value.product_weight
                 : value.product_size %>
               </td>
               <td><%= value.product_price %></td>
@@ -121,9 +125,9 @@
             <div class="half_input">
               <label for="">Taom turi</label>
               <select name="product_collection" class="product_collection">
-                <option value="dish" selected>Taom</option>
+                <option value="food" selected>Food</option>
                 <option value="salad">Salad</option>
-                <option value="dessert">Dessert</option>
+                <option value="meat">Go'sht</option>
                 <option value="drink">Ichimlik</option>
                 <option value="etc">Boshqa</option>
               </select>
@@ -146,6 +150,14 @@
                 <option value="1.2">1.2 litr</option>
                 <option value="1.5">1.5 litr</option>
                 <option value="2">2 litr</option>
+              </select>
+            </div>
+            <div class="half_input" id="product_weight" style="display: none">
+              <label for="">Go'sht hajmi</label>
+              <select name="product_weight" class="product_weight">
+                <option value="0.5">0.5 kg</option>
+                <option value="1" selected>1 kg</option>
+                <option value="2">2 kg</option>
               </select>
             </div>
           </div>
@@ -211,7 +223,7 @@
               </div>
               <input
                 value="<%= member._id %>"
-                name="restaurant_id"
+                name="market_id"
                 class="restaurant_id"
                 hidden
               />
@@ -232,18 +244,24 @@
   </div>
 
   <script>
-    // opstiondan "dink" tanlanganda drinkga tegishli volumelarni chiqarish ->
     $(function () {
-      $(".product_collection").on("change", () => {
-        const selected_value = $(".product_collection").val();
-        if (selected_value === "drink") {
-          $("#product_volume").show();
-          $("#product_size").hide();
-        } else {
-          $("#product_volume").hide();
-          $("#product_size").show();
-        }
-      });
+   $(".product_collection").on("change", () => {
+  const selectedValue = $(".product_collection").val();
+  if (selectedValue === "meat") {
+    $("#product_weight").show();
+    $("#product_volume").hide();
+    $("#product_size").hide();
+  } else if (selectedValue === "drink") {
+    $("#product_volume").show();
+    $("#product_weight").hide();
+    $("#product_size").hide();
+  } else {
+    $("#product_size").show();
+    $("#product_volume").hide();
+    $("#product_weight").hide();
+  }
+});
+
 
       // "taom qo'shish" tugmasi bosilganda ".dish_container" ochilish functionni ->
       $(".hiding_btn").on("click", () => {
@@ -279,16 +297,16 @@
 
     // form validate
     function validateForm() {
-      const restaurant_mb_id = $(".restaurant_mb_id").val(),
+      const market_mb_id = $(".market_mb_id").val(),
         product_name = $(".product_name").val(),
         product_price = $(".product_price").val(),
-        product_left_cnt = $(".product_price").val(),
-        product_collection = $(".product_price").val(),
-        product_description = $(".product_price").val(),
-        product_status = $(".product_price").val();
+        product_left_cnt = $(".product_left_cnt").val(),
+        product_collection = $(".product_collection").val(),
+        product_description = $(".product_description").val(),
+        product_status = $(".product_status").val();
 
       if (
-        restaurant_mb_id == "" ||
+        market_mb_id == "" ||
         product_name == "" ||
         product_price == "" ||
         product_left_cnt == "" ||

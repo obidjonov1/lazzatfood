@@ -17,10 +17,8 @@ class Product {
       const auth_mb_id = shapeIntoMongooseObjectId(member?._id);
 
       let match = { product_status: "PROCESS" };
-      if (data.restaurant_mb_id) {
-        match["restaurant_mb_id"] = shapeIntoMongooseObjectId(
-          data.restaurant_mb_id
-        );
+      if (data.market_mb_id) {
+        match["market_mb_id"] = shapeIntoMongooseObjectId(data.market_mb_id);
         match["product_collection"] = data.product_collection;
       }
 
@@ -82,12 +80,12 @@ class Product {
       // login bo'lgan memberning idsi orqali productModuldan -> [16] ->
       member._id = shapeIntoMongooseObjectId(member._id);
       const result = await this.productModel.find({
-        // restaurant_mb_id = member._id bo'lgan hammasini topib beradi -> [20]
-        restaurant_mb_id: member._id,
+        // market_mb_id = member._id bo'lgan hammasini topib beradi -> [20]
+        market_mb_id: member._id,
       });
       assert.ok(result, Definer.general_err1);
       // [17]-> va ularni qaytarib beradi
-      return result; // restaurantController [21] ga pass qilib beradi
+      return result; // marketController [21] ga pass qilib beradi
     } catch (err) {
       throw err;
     }
@@ -95,7 +93,7 @@ class Product {
 
   async addNewProductData(data, member) {
     try {
-      data.restaurant_mb_id = shapeIntoMongooseObjectId(member._id);
+      data.market_mb_id = shapeIntoMongooseObjectId(member._id);
 
       const new_product = this.productModel(data);
       const result = await new_product.save();
@@ -115,7 +113,7 @@ class Product {
       const result = await this.productModel
         .findOneAndUpdate(
           // qaysi objectni update qilinyapti ->
-          { _id: id, restaurant_mb_id: mb_id },
+          { _id: id, market_mb_id: mb_id },
           updated_data,
           // o'zgargan datani yuboradi ->
           {

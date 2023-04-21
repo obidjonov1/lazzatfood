@@ -5,6 +5,7 @@ const {
   product_status_enums,
   product_size_enums,
   product_volume_enums,
+  product_weight_enums,
 } = require("../lib/config");
 const Schema = mongoose.Schema;
 
@@ -46,7 +47,7 @@ const productSchema = new mongoose.Schema(
       default: "normal",
       // product_volumega tegishli bo'lmasa 'product_size' uchun
       required: function () {
-        const sized_list = ["dish", "salad", "dessert"];
+        const sized_list = ["food", "salad", "parfumerie"];
         return sized_list.includes(this.product_collection);
       },
       enum: {
@@ -63,6 +64,17 @@ const productSchema = new mongoose.Schema(
       },
       enum: {
         values: product_volume_enums,
+        message: "{VALUE} is not among permitted enum values",
+      },
+    },
+    product_weight: {
+      type: Number,
+      default: 1,
+      required: function () {
+        return this.product_collection === "meat";
+      },
+      enum: {
+        values: product_weight_enums,
         message: "{VALUE} is not among permitted enum values",
       },
     },
@@ -85,7 +97,7 @@ const productSchema = new mongoose.Schema(
       required: false,
       default: 0,
     },
-    restaurant_mb_id: {
+    market_mb_id: {
       type: Schema.Types.ObjectId,
       // refrense qaysi databasega bog'langan ->
       ref: "Member",
@@ -99,10 +111,11 @@ const productSchema = new mongoose.Schema(
 // Agar oshxona oldin qo'shilgan productni yana qo'shmoqchi yoki huddi o'sha "name", "size" bilan kiritmoqchi bo'lsa "ERROR" beradi ->
 productSchema.index(
   {
-    restaurant_mb_id: 1,
+    market_mb_id: 1,
     product_name: 1,
     product_size: 1,
     product_volume: 1,
+    product_weight: 1,
   },
   { unique: true }
 );
