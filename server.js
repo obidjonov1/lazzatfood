@@ -22,7 +22,7 @@ mongoose.connect(
       // my localhost:3003
       let PORT = process.env.PORT || 3003;
       server.listen(PORT, function () {
-        console.log(`runnig syccessfuly ${PORT}, http://localhost:${PORT}`);
+        console.log(`runnig syccessfuly, http://localhost:${PORT}`);
       });
     }
   }
