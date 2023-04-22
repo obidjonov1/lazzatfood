@@ -6,6 +6,7 @@ const {
   product_size_enums,
   product_volume_enums,
   product_weight_enums,
+  product_etc_enums,
 } = require("../lib/config");
 const Schema = mongoose.Schema;
 
@@ -78,6 +79,17 @@ const productSchema = new mongoose.Schema(
         message: "{VALUE} is not among permitted enum values",
       },
     },
+    product_etc: {
+      type: Number,
+      default: 1,
+      required: function () {
+        return this.product_collection === "etc";
+      },
+      enum: {
+        values: product_etc_enums,
+        message: "{VALUE} is not among permitted enum values",
+      },
+    },
     product_description: {
       type: String,
       required: true,
@@ -116,6 +128,7 @@ productSchema.index(
     product_size: 1,
     product_volume: 1,
     product_weight: 1,
+    product_etc: 1,
   },
   { unique: true }
 );

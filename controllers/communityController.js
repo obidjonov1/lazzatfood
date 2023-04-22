@@ -2,6 +2,7 @@ let communityController = module.exports;
 const assert = require("assert");
 const Definer = require("../lib/mistake");
 const Community = require("../models/Community");
+const Product = require("../models/Product");
 
 communityController.imageInsertion = async (req, res) => {
   try {
@@ -39,8 +40,7 @@ communityController.getMemberArticles = async (req, res) => {
 
     /*  req.query.mb_id != "none" ga (boshqani ko'rsatadi), agar "none" ga = bo'lsa (myArticles)ni ko'rsatadi,
       agar umuman yo'q bo'sa ERROR[42] */
-    const mb_id =
-      req.query.mb_id !== "none" ? req.query.mb_id : req.member._id;
+    const mb_id = req.query.mb_id !== "none" ? req.query.mb_id : req.member._id;
     assert.ok(mb_id, Definer.article_err1);
 
     const result = await community.getMemberArticlesData(
@@ -82,3 +82,34 @@ communityController.getChosenArticle = async (req, res) => {
     res.json({ state: "fail", message: err.message });
   }
 };
+
+// REVIEW
+communityController.createReview = async (req, res) => {
+  try {
+    console.log("POST: cont/createReview");
+
+    const product = new Product();
+    const result = await product.createReviewData(req.member, req.body);
+    assert.ok(result, Definer.general_err1);
+
+    res.json({ state: "success", data: result });
+  } catch (err) {
+    console.log(`ERROR: cont/createReview ${err.message}`);
+    res.json({ state: "fail", message: err.message });
+  }
+};
+
+// communityController.createReview = async (req, res) => {
+//   try {
+//     console.log("POST: cont/createReview");
+
+//     const community = new Community();
+//     const result = await community.createReviewData(req.member, req.body);
+//     assert.ok(result, Definer.general_err1);
+
+//     res.json({ state: "success", data: result });
+//   } catch (err) {
+//     console.log(`ERROR: cont/createReview ${err.message}`);
+//     res.json({ state: "fail", message: err.message });
+//   }
+// };

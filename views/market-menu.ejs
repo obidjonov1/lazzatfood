@@ -48,6 +48,10 @@
                 <%= value.product_collection === "meat" ? value.product_weight
                 : value.product_size %>
               </td>
+              <td>
+                <%= value.product_collection === "meat" ? value.product_etc
+                : value.product_size %>
+              </td>
               <td><%= value.product_price %></td>
               <td><%= value.product_left_cnt %></td>
               <td>
@@ -160,6 +164,13 @@
                 <option value="2">2 kg</option>
               </select>
             </div>
+            <div class="half_input" id="product_etc" style="display: none">
+              <label for="">Mahsulot soni</label>
+              <select name="product_etc" class="product_etc">
+                <option value="1" selected>1 dona</option>
+                <option value="2">2 dona</option>
+              </select>
+            </div>
           </div>
 
           <div class="long_input">
@@ -251,14 +262,22 @@
     $("#product_weight").show();
     $("#product_volume").hide();
     $("#product_size").hide();
+    $("#product_etc").hide();
   } else if (selectedValue === "drink") {
     $("#product_volume").show();
     $("#product_weight").hide();
     $("#product_size").hide();
+    $("#product_etc").hide();
+  } else if (selectedValue === "etc") {
+    $("#product_etc").show();
+    $("#product_size").hide();
+    $("#product_volume").hide();
+    $("#product_weight").hide();
   } else {
     $("#product_size").show();
     $("#product_volume").hide();
     $("#product_weight").hide();
+    $("#product_etc").hide();
   }
 });
 
