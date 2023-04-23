@@ -21,22 +21,22 @@
     <div class="restaurant_menu_frame">
       <div class="restaurant_container">
         <div class="resto_table">
-          <span class="new_dish_txt">Barcha Oshxonalar Ro'yhati</span>
+          <span class="new_dish_txt">List of All Markets</span>
           <table class="table table-hover table-sm">
             <thead class="thead-light">
-              <tr class="thead-light">
+              <tr class="thead-light" style="text-align: center">
                 <th scope="col">T/r</th>
-                <th scope="col">Oshxona nomi</th>
-                <th scope="col">Oshxona Telefon Raqami</th>
-                <th scope="col">Oshxona TOP</th>
-                <th scope="col">Oshxona Holati</th>
+                <th scope="col">Market name</th>
+                <th scope="col">Market phone</th>
+                <th scope="col">TOP Market</th>
+                <th scope="col">Market Status</th>
               </tr>
             </thead>
 
             <% markets_data.map(function(value, key) { %>
-            <tbody style="background: white">
+            <tbody style="background: white; text-align: center">
               <td><%= key +1 %></td>
-              <td><%= value.mb_nick %></td>
+              <td style="text-transform: uppercase"><%= value.mb_nick %></td>
               <td><%= value.mb_phone %></td>
               <td style="width: 13%">
                 <label class="switch">
@@ -47,9 +47,11 @@
               </td>
               <td style="width: 13%">
                 <select class="spec_select mb_status" id="<%= value._id %>">
-                  <option value="ONPAUSE" <%= value.mb_status === 'ONPAUSE' ? 'selected' : '' %> >ONPAUSE</option>
-                  <option value="ACTIVE" <%= value.mb_status === 'ACTIVE' ? 'selected' : '' %>>ACTIVE</option>
-                  <option value="DELETED" <%= value.mb_status === 'DELETED' ? 'selected' : '' %>>DELETED</option>
+                  <option value="ONPAUSE" <%= value.mb_status === 'ONPAUSE' ?
+                  'selected' : '' %> >ONPAUSE <option value="ACTIVE" <%=
+                  value.mb_status === 'ACTIVE' ? 'selected' : '' %>>ACTIVE
+                  <option value="DELETED" <%= value.mb_status === 'DELETED' ?
+                  'selected' : '' %>>DELETED
                 </select>
               </td>
             </tbody>
@@ -60,6 +62,24 @@
     </div>
   </div>
 
+  <div class="notification_container">
+    <h2 class="form-title">Habar yuborish</h2>
+    <div class="message-form">
+      <form action="#" method="POST">
+        <label class="label_style" for="recipient">Qabul qiluvchi:</label>
+        <select class="_style" name="recipient" id="recipient">
+          <option value="all">Barchasi</option>
+          <option value="admins">Administratorlar</option>
+          <option value="users">Foydalanuvchilar</option>
+        </select>
+        <label for="subject">Mavzu:</label>
+        <input class="_style" type="text" id="subject" name="subject" required />
+        <label for="message">Xabar:</label>
+        <textarea class="_style" id="message" name="message" rows="5" required></textarea>
+        <button class="notification_btn" type="submit">Jo'natish</button>
+      </form>
+    </div>
+  </div>
   <script>
     // document get ready
     $(function () {
@@ -71,16 +91,16 @@
         // update bo'lgan datani bodyga yuklanyapti ->
         axios
           .post("/resto/all-market/edit", { id: id, mb_top: mb_top })
-          .then(response => {
+          .then((response) => {
             //response.data ni ichida marketController[164] (res.jsonga path qilganimiz) beriladi
             const result = response.data;
             if (result.state === "success") alert("successfully updated");
             else alert(result.message);
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       });
 
-      /*  monupulate markets STATUS features */      
+      /*  monupulate markets STATUS features */
       $(".mb_status").on("change", function (e) {
         // marketlarni .id sini olinyapti ->
         const id = e.target.id;
@@ -89,7 +109,7 @@
         // update bo'lgan datani bodyga yuklanyapti ->
         axios
           .post("/resto/all-market/edit", { id: id, mb_status: mb_status })
-          .then(response => {
+          .then((response) => {
             //response.data ni ichida marketController[164] (res.jsonga path qilganimiz) beriladi
             const result = response.data;
             if (result.state === "success") alert("successfully updated");

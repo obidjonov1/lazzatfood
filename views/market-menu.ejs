@@ -22,17 +22,17 @@
       <div class="restaurant_container">
         <div class="dish_table">
           <span class="new_dish_txt">
-            <%= member.mb_nick.toUpperCase()%> Taomlar Menyusi
+            <%= member.mb_nick.toUpperCase()%> Products Menu
           </span>
           <table class="table table-bordered table-hover">
             <thead class="thead-light" style="text-align: center">
               <th scope="col">T/r</th>
-              <th scope="col">Taom nomi</th>
-              <th scope="col">Taom turi</th>
-              <th scope="col">Taom hajmi</th>
-              <th scope="col">Taom narxi</th>
-              <th scope="col">Taom qoldiq miqdori</th>
-              <th scope="col">Taom holati</th>
+              <th scope="col">Product name</th>
+              <th scope="col">Product type</th>
+              <th scope="col">Product size</th>
+              <th scope="col">Product price</th>
+              <th scope="col">Product left over</th>
+              <th scope="col">Product status</th>
             </thead>
 
             <% market_data.map((value, key) => { %>
@@ -41,17 +41,17 @@
               <td><%= value.product_name %></td>
               <td><%= value.product_collection %></td>
               <td>
-                <%= value.product_collection === "drink" ? value.product_volume
-                : value.product_size %>
+                <% if (value.product_collection === "drink") { %>
+                <%= value.product_volume %>
+                <% } else if (value.product_collection === "meat") { %>
+                <%= value.product_weight %>
+                <% } else if (value.product_collection === "etc") { %>
+                <%= value.product_etc %>
+                <% } else { %>
+                <%= value.product_size %>
+                <% } %>
               </td>
-              <td>
-                <%= value.product_collection === "meat" ? value.product_weight
-                : value.product_size %>
-              </td>
-              <td>
-                <%= value.product_collection === "meat" ? value.product_etc
-                : value.product_size %>
-              </td>
+
               <td><%= value.product_price %></td>
               <td><%= value.product_left_cnt %></td>
               <td>
@@ -71,7 +71,7 @@
             class="long_input"
             style="align-items: flex-end; margin-bottom: 25px"
           >
-            <button class="btn btn-primary hiding_btn">Taom qo'shish</button>
+            <button class="btn btn-primary hiding_btn">Product Add</button>
           </div>
         </div>
 
@@ -83,15 +83,15 @@
           enctype="multipart/form-data"
         >
           <div class="long_input" style="display: flex; align-items: center">
-            <span class="new_dish_txt">Yangi Taom</span>
+            <span class="new_dish_txt">New Product Add</span>
           </div>
 
           <div>
             <div class="long_input">
-              <label for="">Taom nomi</label>
+              <label for="">Product name</label>
               <input
                 type="text"
-                placeholder="Taom nomi"
+                placeholder="name"
                 name="product_name"
                 class="product_name"
               />
@@ -106,19 +106,19 @@
 
           <div class="half_input_frame">
             <div class="half_input">
-              <label for="">Taom narxi</label>
+              <label for="">Product price</label>
               <input
                 type="number"
-                placeholder="Taom narxi"
+                placeholder="price"
                 name="product_price"
                 class="product_price"
               />
             </div>
             <div class="half_input">
-              <label for="">Taom qoldiq miqdori</label>
+              <label for="">Product left over</label>
               <input
                 type="number"
-                placeholder="Taom mavjud miqdori"
+                placeholder="Product left over"
                 name="product_left_cnt"
                 class="product_left_cnt"
               />
@@ -127,37 +127,36 @@
 
           <div class="half_input_frame">
             <div class="half_input">
-              <label for="">Taom turi</label>
+              <label for="">Product type</label>
               <select name="product_collection" class="product_collection">
                 <option value="food" selected>Food</option>
-                <option value="salad">Salad</option>
-                <option value="meat">Go'sht</option>
-                <option value="drink">Ichimlik</option>
-                <option value="etc">Boshqa</option>
+                <option value="meat">Meat</option>
+                <option value="drink">Drink</option>
+                <option value="etc">Etc</option>
               </select>
             </div>
 
             <div class="half_input" id="product_size">
-              <label for="">Taom hajmi</label>
+              <label for="">Product size</label>
               <select name="product_size" class="product_size">
-                <option value="small">Kichkina</option>
-                <option value="normal" selected>O'rtacha</option>
-                <option value="large">Katta</option>
+                <option value="small">Small</option>
+                <option value="normal" selected>Normal</option>
+                <option value="large">Large</option>
                 <option value="set">Set</option>
               </select>
             </div>
             <div class="half_input" id="product_volume" style="display: none">
-              <label for="">Ichimlik hajmi</label>
+              <label for="">Drink size</label>
               <select name="product_volume" class="product_volume">
                 <option value="0.5">0.5 litr</option>
-                <option value="1" selected>1 litr</option>
-                <option value="1.2">1.2 litr</option>
-                <option value="1.5">1.5 litr</option>
-                <option value="2">2 litr</option>
+                <option value="1" selected>1 liter</option>
+                <option value="1.2">1.2 liter</option>
+                <option value="1.5">1.5 liter</option>
+                <option value="2">2 liter</option>
               </select>
             </div>
             <div class="half_input" id="product_weight" style="display: none">
-              <label for="">Go'sht hajmi</label>
+              <label for="">Meat size</label>
               <select name="product_weight" class="product_weight">
                 <option value="0.5">0.5 kg</option>
                 <option value="1" selected>1 kg</option>
@@ -165,22 +164,22 @@
               </select>
             </div>
             <div class="half_input" id="product_etc" style="display: none">
-              <label for="">Mahsulot soni</label>
+              <label for="">Product quantity</label>
               <select name="product_etc" class="product_etc">
-                <option value="1" selected>1 dona</option>
-                <option value="2">2 dona</option>
+                <option value="1" selected>1 pc</option>
+                <option value="2">2 pc</option>
               </select>
             </div>
           </div>
 
           <div class="long_input">
-            <label for="">Taom haqida</label>
+            <label for="">Product info</label>
             <textarea name="product_description" class="product_description">
             </textarea>
           </div>
 
           <div class="img_frame">
-            <label for="">Taom rasimlari</label>
+            <label for="">Product images</label>
             <div class="media-frame">
               <div class="upload_img_box">
                 <img src="/images/upload.png" class="1" id="image_section_1" />
@@ -246,7 +245,7 @@
             style="align-items: flex-end; margin-bottom: 25px"
           >
             <button type="submit" class="btn btn-primary" id="create_product">
-              Yuklash
+              Upload
             </button>
           </div>
         </form>
@@ -255,31 +254,31 @@
   </div>
 
   <script>
-    $(function () {
-   $(".product_collection").on("change", () => {
-  const selectedValue = $(".product_collection").val();
-  if (selectedValue === "meat") {
-    $("#product_weight").show();
-    $("#product_volume").hide();
-    $("#product_size").hide();
-    $("#product_etc").hide();
-  } else if (selectedValue === "drink") {
-    $("#product_volume").show();
-    $("#product_weight").hide();
-    $("#product_size").hide();
-    $("#product_etc").hide();
-  } else if (selectedValue === "etc") {
-    $("#product_etc").show();
-    $("#product_size").hide();
-    $("#product_volume").hide();
-    $("#product_weight").hide();
-  } else {
-    $("#product_size").show();
-    $("#product_volume").hide();
-    $("#product_weight").hide();
-    $("#product_etc").hide();
-  }
-});
+   $(function () {
+    $(".product_collection").on("change", () => {
+      const selectedValue = $(".product_collection").val();
+        if (selectedValue === "meat") {
+          $("#product_weight").show();
+          $("#product_volume").hide();
+          $("#product_size").hide();
+          $("#product_etc").hide();
+        } else if (selectedValue === "drink") {
+          $("#product_volume").show();
+          $("#product_weight").hide();
+          $("#product_size").hide();
+          $("#product_etc").hide();
+        } else if (selectedValue === "etc") {
+          $("#product_etc").show();
+          $("#product_size").hide();
+          $("#product_volume").hide();
+          $("#product_weight").hide();
+        } else {
+          $("#product_size").show();
+          $("#product_volume").hide();
+          $("#product_weight").hide();
+          $("#product_etc").hide();
+        }
+      });
 
 
       // "taom qo'shish" tugmasi bosilganda ".dish_container" ochilish functionni ->
@@ -319,10 +318,10 @@
       const market_mb_id = $(".market_mb_id").val(),
         product_name = $(".product_name").val(),
         product_price = $(".product_price").val(),
-        product_left_cnt = $(".product_left_cnt").val(),
-        product_collection = $(".product_collection").val(),
-        product_description = $(".product_description").val(),
-        product_status = $(".product_status").val();
+        product_left_cnt = $(".product_price").val(),
+        product_collection = $(".product_price").val(),
+        product_description = $(".product_price").val(),
+        product_status = $(".product_price").val();
 
       if (
         market_mb_id == "" ||
@@ -333,7 +332,7 @@
         product_description == "" ||
         product_status == ""
       ) {
-        alert("Iltimos hamma ma'lumotlarni kiriting!");
+        alert("Please enter all information!");
         return false;
       } else return true;
     }
@@ -347,7 +346,7 @@
 
       if (!validImageTypes.includes(fileType)) {
         alert(
-          "Iltimos ruhsat etilgan formatdagi rasimlarni yuklang! (jpg, jprg, png)"
+          "Please upload images in a licensed format! (jpg, jprg, png)"
         );
       } else {
         if (file) {
