@@ -2,31 +2,31 @@
 <link rel="stylesheet" href="/css/login.css" />
 <body>
   <form action="/resto/login" method="POST" class="login_container">
-    <div class="login_frame" style="height: 460px">
+    <div class="login_frame">
       <div class="login_top">
-        <span>Saytga kirish</span>
+        <span>Sign In</span>
         <div>
-          Bosh sahifaga qaytish <a href="/resto" style="color: #6440fb">Home</a>
+          Back to Home page: <a href="/resto" style="color: #6440fb">Home</a>
         </div>
         <p>
-          Ro'yhatdan o'tganmisiz?
-          <a href="/resto/sign-up" style="color: #6440fb">Ro'yhatdan o'tish</a>
+          Already registered?
+          <a href="/resto/sign-up" style="color: #6440fb">Sign Up</a>
         </p>
       </div>
 
       <div class="login_input_frame">
         <div class="login_input_container">
-          <label>Foydalanuvchining ismi:</label>
+          <label>User name (ID)</label>
           <input
             type="text"
             name="mb_nick"
-            placeholder="Foydalanuvchining ismi"
+            placeholder="User name"
             value=""
             required
           />
         </div>
         <div class="login_input_container">
-          <label>Password kiriting:</label>
+          <label>Password</label>
           <input
             type="password"
             name="mb_password"
@@ -37,7 +37,7 @@
         </div>
       </div>
 
-      <button class="login_btn btn" name="login" type="submit">Kirish</button>
+      <button class="login_btn btn" name="login" type="submit">Login</button>
     </div>
   </form>
 </body>

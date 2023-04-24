@@ -38,29 +38,29 @@
             <% market_data.map((value, key) => { %>
             <tbody style="background: white; text-align: center">
               <td><%= key +1 %></td>
-              <td><%= value.product_name %></td>
+              <td style="text-transform: capitalize">
+                <%= value.product_name %>
+              </td>
               <td><%= value.product_collection %></td>
               <td>
-                <% if (value.product_collection === "drink") { %>
-                <%= value.product_volume %>
-                <% } else if (value.product_collection === "meat") { %>
-                <%= value.product_weight %>
-                <% } else if (value.product_collection === "etc") { %>
-                <%= value.product_etc %>
-                <% } else { %>
-                <%= value.product_size %>
-                <% } %>
+                <% if (value.product_collection === "drink") { %> <%=
+                value.product_volume %> liter <% } else if (value.product_collection
+                === "meat") { %> <%= value.product_weight %> kg <% } else if
+                (value.product_collection === "etc") { %> <%= value.product_etc
+                %> pc<% } else { %> <%= value.product_size %> <% } %>
               </td>
 
-              <td><%= value.product_price %></td>
+              <td>₩ <%= value.product_price %></td>
               <td><%= value.product_left_cnt %></td>
               <td>
                 <select
                   id="<%= value._id %>"
                   class="spec_select new_product_status"
                 >
-                  <option value="PAUSED" <%= value.product_status ===  "PAUSED" ? 'selected' : '' %> >PAUSED</option>
-                  <option value="PROCESS" <%= value.product_status ===  "PROCESS" ? 'selected' : '' %> >PROCESS</option>
+                  <option value="PAUSED" <%= value.product_status === "PAUSED" ?
+                  'selected' : '' %> ><span class="option_paused">PAUSED</span>
+                  <option value="PROCESS" <%= value.product_status === "PROCESS"
+                  ? 'selected' : '' %> >PROCESS
                 </select>
               </td>
             </tbody>
@@ -254,9 +254,9 @@
   </div>
 
   <script>
-   $(function () {
-    $(".product_collection").on("change", () => {
-      const selectedValue = $(".product_collection").val();
+    $(function () {
+      $(".product_collection").on("change", () => {
+        const selectedValue = $(".product_collection").val();
         if (selectedValue === "meat") {
           $("#product_weight").show();
           $("#product_volume").hide();
@@ -279,7 +279,6 @@
           $("#product_etc").hide();
         }
       });
-
 
       // "taom qo'shish" tugmasi bosilganda ".dish_container" ochilish functionni ->
       $(".hiding_btn").on("click", () => {
@@ -345,9 +344,7 @@
         validImageTypes = ["image/jpg", "image/jpeg", "image/png"];
 
       if (!validImageTypes.includes(fileType)) {
-        alert(
-          "Please upload images in a licensed format! (jpg, jprg, png)"
-        );
+        alert("Please upload images in a licensed format! (jpg, jprg, png)");
       } else {
         if (file) {
           let reader = new FileReader();

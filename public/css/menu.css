@@ -76,6 +76,10 @@
   color: #ffffff;
 }
 
+.option_paused {
+  background: #e30c0c;
+}
+
 .long_input {
   position: relative;
   margin-top: 25px;
@@ -368,7 +372,7 @@ input:checked + .slider:before {
 .notification_btn {
   background-color: #4caf50;
   color: #fff;
-  padding: 10px;
+  padding: 8px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;

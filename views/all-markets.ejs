@@ -63,20 +63,20 @@
   </div>
 
   <div class="notification_container">
-    <h2 class="form-title">Habar yuborish</h2>
+    <h2 class="form-title">Send Notification Message</h2>
     <div class="message-form">
       <form action="#" method="POST">
-        <label class="label_style" for="recipient">Qabul qiluvchi:</label>
+        <label class="label_style" for="recipient">Receiver:</label>
         <select class="_style" name="recipient" id="recipient">
-          <option value="all">Barchasi</option>
-          <option value="admins">Administratorlar</option>
-          <option value="users">Foydalanuvchilar</option>
+          <option value="all">All</option>
+          <option value="admins">Markets</option>
+          <option value="users">Users</option>
         </select>
-        <label for="subject">Mavzu:</label>
+        <label for="subject">Title:</label>
         <input class="_style" type="text" id="subject" name="subject" required />
-        <label for="message">Xabar:</label>
+        <label for="message">Message:</label>
         <textarea class="_style" id="message" name="message" rows="5" required></textarea>
-        <button class="notification_btn" type="submit">Jo'natish</button>
+        <button class="notification_btn" type="submit">Send</button>
       </form>
     </div>
   </div>
