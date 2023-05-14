@@ -30,7 +30,8 @@
               <th scope="col">Product name</th>
               <th scope="col">Product type</th>
               <th scope="col">Product size</th>
-              <th scope="col">Product price</th>
+              <th scope="col">Orginal price</th>
+              <th scope="col">Discount price</th>
               <th scope="col">Product left over</th>
               <th scope="col">Product status</th>
             </thead>
@@ -48,13 +49,15 @@
                 (value.product_collection === "meat" || value.product_collection
                 === "fresh") { %> <%= value.product_weight %> kg <% } else if
                 (value.product_collection === "family" ||
-                value.product_collection === "ready" || value.product_collection
-                === "parfumerie" || value.product_collection === "texno" ) { %>
-                <%= value.product_family %> pc<% } else { %> <%=
-                value.product_size %> <% } %>
+                value.product_collection === "readyToEat" ||
+                value.product_collection === "parfumerie" ||
+                value.product_collection === "texno" ) { %> <%=
+                value.product_family %> pc<% } else { %> <%= value.product_size
+                %> <% } %>
               </td>
 
               <td>₩ <%= value.product_price %></td>
+              <td>₩ <%= value.product_discount %></td>
               <td><%= value.product_left_cnt %></td>
               <td>
                 <select
@@ -93,12 +96,7 @@
           <div>
             <div class="long_input">
               <label for="">Product name</label>
-              <input
-                type="text"
-                placeholder="name"
-                name="product_name"
-                class="product_name"
-              />
+              <input type="text" name="product_name" class="product_name" />
             </div>
             <input
               name="product_status"
@@ -110,7 +108,7 @@
 
           <div class="half_input_frame">
             <div class="half_input">
-              <label for="">Product price</label>
+              <label for="">Original price</label>
               <input
                 type="number"
                 placeholder="price"
@@ -119,10 +117,20 @@
               />
             </div>
             <div class="half_input">
+              <label for="product_discount"
+                >Discount price <span class="product_discount">*</span></label
+              >
+              <input
+                type="number"
+                placeholder="discount price"
+                name="product_discount"
+                class="product_discount"
+              />
+            </div>
+            <div class="half_input">
               <label for="">Product left over</label>
               <input
                 type="number"
-                placeholder="Product left over"
                 name="product_left_cnt"
                 class="product_left_cnt"
               />
@@ -138,7 +146,7 @@
                 <option value="drink">Drink</option>
                 <option value="fresh">Fresh</option>
                 <option value="family">Family shop</option>
-                <option value="ready">Ready to eat</option>
+                <option value="readyToEat">Ready to eat</option>
                 <option value="parfumerie">Beauty & Health</option>
                 <option value="texno">Texno</option>
               </select>
@@ -187,7 +195,9 @@
           </div>
 
           <div class="img_frame">
-            <label for="">Product images</label>
+            <label for=""
+              >Product images (Recommended size is 640x640 px)</label
+            >
             <div class="media-frame">
               <div class="upload_img_box">
                 <img src="/images/upload.png" class="1" id="image_section_1" />
@@ -277,7 +287,7 @@
           $("#product_etc").hide();
         } else if (
           selectedValue === "family" ||
-          selectedValue === "ready" ||
+          selectedValue === "readyToEat" ||
           selectedValue === "parfumerie" ||
           selectedValue === "texno"
         ) {
@@ -330,9 +340,9 @@
       const market_mb_id = $(".market_mb_id").val(),
         product_name = $(".product_name").val(),
         product_price = $(".product_price").val(),
-        product_left_cnt = $(".product_price").val(),
+        product_left_cnt = $(".product_left_cnt").val(),
         product_collection = $(".product_price").val(),
-        product_description = $(".product_price").val(),
+        product_description = $(".product_description").val(),
         product_status = $(".product_price").val();
 
       if (
@@ -357,7 +367,7 @@
         validImageTypes = ["image/jpg", "image/jpeg", "image/png"];
 
       if (!validImageTypes.includes(fileType)) {
-        alert("Please upload images in a licensed format! (jpg, jprg, png)");
+        alert("Please upload images in a licensed format! (jpg, jpeg, png)");
       } else {
         if (file) {
           let reader = new FileReader();

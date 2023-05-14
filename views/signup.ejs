@@ -85,7 +85,7 @@
                   value="Choose image"
                   disabled="disabled"
                 />
-                <label for="input_file">Upload</label>
+                <label for="input_file" class="image_upload_btn">Upload</label>
                 <input
                   type="file"
                   id="input_file"
@@ -95,7 +95,7 @@
               </div>
 
               <p class="thumbnail_desc">
-                Required: .jpg, .jpeg, .png (1200x900 px) <br />
+                Required: jpg, jpeg, png (1200x900 px) <br />
                 The image must have no text!
               </p>
             </div>
@@ -122,9 +122,7 @@
           const validImageType = ["image/jpg", "image/jpeg", "image/png"];
           // qo'shilayotgan file(rasim) farmati biz ko'rsatgan fayldan boshqacha bo'lsa ->
           if (!validImageType.includes(fileType)) {
-            alert(
-              "Iltimos ruhsat etilgan formatdagi rasimlarni yuklang: jpg, jpeg, png"
-            );
+            alert("Please upload images in permitted formats: jpg, jpeg, png");
           } else {
             if (uploading_file) {
               console.log(URL.createObjectURL(uploading_file));
@@ -155,15 +153,15 @@
         mb_password == "" ||
         mb_confirm_password == ""
       ) {
-        alert("Iltimos hamma ma'lumotlarni kiriting!");
+        alert("Please enter all information!");
         return false;
       } else if (mb_password !== mb_confirm_password) {
-        alert(`Iltimos passwordni to'g'ri kiriting!`);
+        alert("Please enter the correct password!");
         return false;
       }
 
       if (!market_img) {
-        alert("Iltimos rasimni yuklang!");
+        alert("Please upload a image !");
         return false;
       }
 

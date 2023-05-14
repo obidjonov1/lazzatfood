@@ -36,7 +36,7 @@ const productSchema = new mongoose.Schema(
     },
     product_discount: {
       type: Number,
-      required: false,
+      required: [false, "Please enter your product price!"],
       default: 0,
     },
     product_left_cnt: {
@@ -90,7 +90,7 @@ const productSchema = new mongoose.Schema(
       required: function () {
         return (
           this.product_collection === "family" ||
-          this.product_collection === "ready" ||
+          this.product_collection === "readyToEat" ||
           this.product_collection === "parfumerie" ||
           this.product_collection === "texno"
         );
@@ -106,7 +106,7 @@ const productSchema = new mongoose.Schema(
     },
     product_images: {
       type: Array,
-      required: false,
+      required: true,
       default: [],
     },
     product_likes: {
