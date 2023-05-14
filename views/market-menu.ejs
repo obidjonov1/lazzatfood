@@ -44,10 +44,14 @@
               <td><%= value.product_collection %></td>
               <td>
                 <% if (value.product_collection === "drink") { %> <%=
-                value.product_volume %> liter <% } else if (value.product_collection
-                === "meat") { %> <%= value.product_weight %> kg <% } else if
-                (value.product_collection === "etc") { %> <%= value.product_etc
-                %> pc<% } else { %> <%= value.product_size %> <% } %>
+                value.product_volume %> liter <% } else if
+                (value.product_collection === "meat" || value.product_collection
+                === "fresh") { %> <%= value.product_weight %> kg <% } else if
+                (value.product_collection === "family" ||
+                value.product_collection === "ready" || value.product_collection
+                === "parfumerie" || value.product_collection === "texno" ) { %>
+                <%= value.product_family %> pc<% } else { %> <%=
+                value.product_size %> <% } %>
               </td>
 
               <td>₩ <%= value.product_price %></td>
@@ -132,7 +136,11 @@
                 <option value="food" selected>Food</option>
                 <option value="meat">Meat</option>
                 <option value="drink">Drink</option>
-                <option value="etc">Etc</option>
+                <option value="fresh">Fresh</option>
+                <option value="family">Family shop</option>
+                <option value="ready">Ready to eat</option>
+                <option value="parfumerie">Beauty & Health</option>
+                <option value="texno">Texno</option>
               </select>
             </div>
 
@@ -156,7 +164,7 @@
               </select>
             </div>
             <div class="half_input" id="product_weight" style="display: none">
-              <label for="">Meat size</label>
+              <label for="">Product weight</label>
               <select name="product_weight" class="product_weight">
                 <option value="0.5">0.5 kg</option>
                 <option value="1" selected>1 kg</option>
@@ -257,7 +265,7 @@
     $(function () {
       $(".product_collection").on("change", () => {
         const selectedValue = $(".product_collection").val();
-        if (selectedValue === "meat") {
+        if (selectedValue === "meat" || selectedValue === "fresh") {
           $("#product_weight").show();
           $("#product_volume").hide();
           $("#product_size").hide();
@@ -267,7 +275,12 @@
           $("#product_weight").hide();
           $("#product_size").hide();
           $("#product_etc").hide();
-        } else if (selectedValue === "etc") {
+        } else if (
+          selectedValue === "family" ||
+          selectedValue === "ready" ||
+          selectedValue === "parfumerie" ||
+          selectedValue === "texno"
+        ) {
           $("#product_etc").show();
           $("#product_size").hide();
           $("#product_volume").hide();

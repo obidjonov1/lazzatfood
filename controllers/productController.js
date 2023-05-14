@@ -77,3 +77,19 @@ productController.updateChosenProduct = async (req, res) => {
     console.log(`ERROR: cont/updateChosenProduct ${err.message}`);
   }
 };
+
+// REVIEW
+productController.createReview = async (req, res) => {
+  try {
+    console.log("POST: cont/createReview");
+
+    const product = new Product();
+    const result = await product.createReviewData(req.member, req.body);
+    assert.ok(result, Definer.general_err1);
+
+    res.json({ state: "success", data: result });
+  } catch (err) {
+    console.log(`ERROR: cont/createReview ${err.message}`);
+    res.json({ state: "fail", message: err.message });
+  }
+};

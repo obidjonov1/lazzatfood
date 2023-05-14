@@ -46,9 +46,9 @@ const productSchema = new mongoose.Schema(
     product_size: {
       type: String,
       default: "normal",
-      // product_volumega tegishli bo'lmasa 'product_size' uchun
+      // product_volumega tegishli bo'lmasa 'product_size' uchun ("small", "normal", "large", "set")
       required: function () {
-        const sized_list = ["food", "salad", "parfumerie"];
+        const sized_list = ["food"];
         return sized_list.includes(this.product_collection);
       },
       enum: {
@@ -59,7 +59,7 @@ const productSchema = new mongoose.Schema(
     product_volume: {
       type: Number,
       default: 1,
-      // product_sizega tegishli bo'lmasa 'product_volume' uchun
+      // product_sizega tegishli bo'lmasa 'product_volume' liter uchun
       required: function () {
         return this.product_collection === "drink";
       },
@@ -71,19 +71,29 @@ const productSchema = new mongoose.Schema(
     product_weight: {
       type: Number,
       default: 1,
+      // kg uchun
       required: function () {
-        return this.product_collection === "meat";
+        return (
+          this.product_collection === "meat" ||
+          this.product_collection === "fresh"
+        );
       },
       enum: {
         values: product_weight_enums,
         message: "{VALUE} is not among permitted enum values",
       },
     },
-    product_etc: {
+    product_family: {
       type: Number,
       default: 1,
+      // pc "dona" uchun
       required: function () {
-        return this.product_collection === "etc";
+        return (
+          this.product_collection === "family" ||
+          this.product_collection === "ready" ||
+          this.product_collection === "parfumerie" ||
+          this.product_collection === "texno"
+        );
       },
       enum: {
         values: product_etc_enums,
@@ -128,7 +138,7 @@ productSchema.index(
     product_size: 1,
     product_volume: 1,
     product_weight: 1,
-    product_etc: 1,
+    product_family: 1,
   },
   { unique: true }
 );

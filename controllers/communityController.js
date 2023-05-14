@@ -83,33 +83,3 @@ communityController.getChosenArticle = async (req, res) => {
   }
 };
 
-// REVIEW
-communityController.createReview = async (req, res) => {
-  try {
-    console.log("POST: cont/createReview");
-
-    const product = new Product();
-    const result = await product.createReviewData(req.member, req.body);
-    assert.ok(result, Definer.general_err1);
-
-    res.json({ state: "success", data: result });
-  } catch (err) {
-    console.log(`ERROR: cont/createReview ${err.message}`);
-    res.json({ state: "fail", message: err.message });
-  }
-};
-
-// communityController.createReview = async (req, res) => {
-//   try {
-//     console.log("POST: cont/createReview");
-
-//     const community = new Community();
-//     const result = await community.createReviewData(req.member, req.body);
-//     assert.ok(result, Definer.general_err1);
-
-//     res.json({ state: "success", data: result });
-//   } catch (err) {
-//     console.log(`ERROR: cont/createReview ${err.message}`);
-//     res.json({ state: "fail", message: err.message });
-//   }
-// };
