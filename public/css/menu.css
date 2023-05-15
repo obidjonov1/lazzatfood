@@ -144,6 +144,10 @@
 .half_input_frame .half_input .product_discount {
   color: #ec7070;
 }
+.half_input_frame .half_input .exapmle_price {
+  font-size: 14px;
+  color: #b5b5b5;
+}
 
 .half_input label {
   font-family: "Source serif Pro";
