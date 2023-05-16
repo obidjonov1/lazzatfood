@@ -31,11 +31,11 @@ const productSchema = new mongoose.Schema(
       },
     },
     product_price: {
-      type: String,
+      type: Number,
       required: true,
     },
     product_discount: {
-      type: String,
+      type: Number,
       required: [false, "Please enter your product price!"],
       default: 0,
     },
