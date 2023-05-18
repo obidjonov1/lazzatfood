@@ -24,57 +24,62 @@
           <span class="new_dish_txt">
             <%= member.mb_nick.toUpperCase()%> Products Menu
           </span>
-          <table class="table table-bordered table-hover">
-            <thead class="thead-light" style="text-align: center">
-              <th scope="col">T/r</th>
-              <th scope="col">Product name</th>
-              <th scope="col">Product type</th>
-              <th scope="col">Product size</th>
-              <th scope="col">Orginal price</th>
-              <th scope="col">Discount price</th>
-              <th scope="col">Product left over</th>
-              <th scope="col">Product status</th>
-            </thead>
+          <div class="table_heigth">
+            <table class="table table-bordered table-hover">
+              <thead class="thead-light" style="text-align: center">
+                <th scope="col">T/r</th>
+                <th scope="col">Product name</th>
+                <th scope="col">Product type</th>
+                <th scope="col">Product size</th>
+                <th scope="col">Orginal price</th>
+                <th scope="col">Discount price</th>
+                <th scope="col">Product left over</th>
+                <th scope="col">Product status</th>
+              </thead>
 
-            <% market_data.map((value, key) => { %>
-            <tbody style="background: white; text-align: center">
-              <td><%= key +1 %></td>
-              <td style="text-transform: capitalize">
-                <%= value.product_name %>
-              </td>
-              <td><%= value.product_collection %></td>
-              <td>
-                <% if (value.product_collection === "drink") { %> <%=
-                value.product_volume %> liter <% } else if
-                (value.product_collection === "meat" || value.product_collection
-                === "fresh") { %> <%= value.product_weight %> kg <% } else if
-                (value.product_collection === "family" ||
-                value.product_collection === "readyToEat" ||
-                value.product_collection === "parfumerie" ||
-                value.product_collection === "texno" ) { %> <%=
-                value.product_family %> pc<% } else if (value.product_size ===
-                "1" || value.product_size === "2" || value.product_size === "3")
-                { %> <%= value.product_size %> liter <% } else { %> <%=
-                value.product_size %> <% } %>
-              </td>
+              <% market_data.map((value, key) => { %>
+              <tbody style="background: white; text-align: center">
+                <td><%= key +1 %></td>
+                <td style="text-transform: capitalize">
+                  <%= value.product_name %>
+                </td>
+                <td><%= value.product_collection %></td>
+                <td>
+                  <% if (value.product_collection === "drink") { %> <%=
+                  value.product_volume %> liter <% } else if
+                  (value.product_collection === "meat" ||
+                  value.product_collection === "fresh") { %> <%=
+                  value.product_weight %> kg <% } else if
+                  (value.product_collection === "family" ||
+                  value.product_collection === "readyToEat" ||
+                  value.product_collection === "parfumerie" ||
+                  value.product_collection === "texno" ) { %> <%=
+                  value.product_family %> pc<% } else if (value.product_size ===
+                  "1" || value.product_size === "2" || value.product_size ===
+                  "3") { %> <%= value.product_size %> liter <% } else { %> <%=
+                  value.product_size %> <% } %>
+                </td>
 
-              <td>₩ <%= value.product_price %></td>
-              <td>₩ <%= value.product_discount %></td>
-              <td><%= value.product_left_cnt %></td>
-              <td>
-                <select
-                  id="<%= value._id %>"
-                  class="spec_select new_product_status"
-                >
-                  <option value="PAUSED" <%= value.product_status === "PAUSED" ?
-                  'selected' : '' %> ><span class="option_paused">PAUSED</span>
-                  <option value="PROCESS" <%= value.product_status === "PROCESS"
-                  ? 'selected' : '' %> >PROCESS
-                </select>
-              </td>
-            </tbody>
-            <% }); %>
-          </table>
+                <td>₩ <%= value.product_price %></td>
+                <td>₩ <%= value.product_discount %></td>
+                <td><%= value.product_left_cnt %></td>
+                <td>
+                  <select
+                    id="<%= value._id %>"
+                    class="spec_select new_product_status"
+                  >
+                    <option value="PAUSED" <%= value.product_status === "PAUSED"
+                    ? 'selected' : '' %> ><span class="option_paused"
+                      >PAUSED</span
+                    >
+                    <option value="PROCESS" <%= value.product_status ===
+                    "PROCESS" ? 'selected' : '' %> >PROCESS
+                  </select>
+                </td>
+              </tbody>
+              <% }); %>
+            </table>
+          </div>
 
           <div
             class="long_input"
