@@ -7,7 +7,6 @@ let orderController = module.exports;
 orderController.createOrder = async (req, res) => {
   try {
     console.log("POST: cont/createOrder");
- 
 
     const order = new Order();
     const result = await order.createOrderData(req.member, req.body);

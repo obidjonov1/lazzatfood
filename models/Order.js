@@ -25,8 +25,8 @@ class Order {
       });
 
       // ma'lum summadan keyin "pochta" bepul bo'lishi ->
-      if (order_total_amount < 100) {
-        delivery_cost = 2;
+      if (order_total_amount < 99000) {
+        delivery_cost = 4000;
         order_total_amount += delivery_cost;
       }
 

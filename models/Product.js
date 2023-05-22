@@ -16,7 +16,10 @@ class Product {
     try {
       const auth_mb_id = shapeIntoMongooseObjectId(member?._id);
 
-      let match = { product_status: "PROCESS" };
+      let match = {
+        product_status: "PROCESS",
+        product_collection: data.product_collection,
+      };
       if (data.market_mb_id) {
         match["market_mb_id"] = shapeIntoMongooseObjectId(data.market_mb_id);
         match["product_collection"] = data.product_collection;
