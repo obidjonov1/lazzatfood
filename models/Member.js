@@ -29,7 +29,7 @@ class Member {
         result = await new_member.save();
       } catch (mongo_err) {
         console.log(mongo_err);
-        throw new Error(Definer.mongo_validation_err1);
+        throw new Error(Definer.auth_err6);
       }
 
       result.mb_password = "";
