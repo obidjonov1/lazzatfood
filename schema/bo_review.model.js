@@ -20,7 +20,7 @@ const BoReviewSchema = new mongoose.Schema(
     text: {
       type: String,
       required: true,
-      maxlength: 100,
+      maxlength: 500,
     },
   },
   {

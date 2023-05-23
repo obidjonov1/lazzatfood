@@ -47,6 +47,17 @@ router.get(
   memberController.retrieveAuthMember,
   productController.getChosenProduct
 );
+router.post(
+  "/products/:id/create-review",
+  memberController.retrieveAuthMember,
+  productController.createReview
+);
+router.post(
+  "/products/:id/delete-review",
+  memberController.retrieveAuthMember,
+  productController.deleteReview
+);
+
 
 // Market related routers
 router.get(

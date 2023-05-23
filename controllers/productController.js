@@ -93,3 +93,21 @@ productController.createReview = async (req, res) => {
     res.json({ state: "fail", message: err.message });
   }
 };
+
+productController.deleteReview = async (req, res) => {
+  try {
+    console.log("POST: cont/deleteReview");
+
+    const product = new Product();
+    const result = await product.deleteReviewData(
+      req.member,
+      req.body.review_id
+    );
+    assert.ok(result, Definer.general_err1);
+
+    res.json({ state: "success", data: result });
+  } catch (err) {
+    console.log(`ERROR: cont/deleteReview ${err.message}`);
+    res.json({ state: "fail", message: err.message });
+  }
+};

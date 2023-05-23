@@ -5,11 +5,13 @@ const {
 } = require("../lib/config");
 const Definer = require("../lib/mistake");
 const ProductModel = require("../schema/product.model");
+const BoReviewModel = require("../schema/bo_review.model");
 const Member = require("./Member");
 
 class Product {
   constructor() {
     this.productModel = ProductModel;
+    this.boReviewModel = BoReviewModel;
   }
 
   async getAllProductsData(member, data) {
