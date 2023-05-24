@@ -17,14 +17,16 @@ class Product {
   async getAllProductsData(member, data) {
     try {
       const auth_mb_id = shapeIntoMongooseObjectId(member?._id);
-
       let match = {
         product_status: "PROCESS",
-        product_collection: data.product_collection,
       };
+
+      if (data.product_collection) {
+        match.product_collection = data.product_collection;
+      }
+
       if (data.market_mb_id) {
-        match["market_mb_id"] = shapeIntoMongooseObjectId(data.market_mb_id);
-        match["product_collection"] = data.product_collection;
+        match.market_mb_id = shapeIntoMongooseObjectId(data.market_mb_id);
       }
 
       const sort =
@@ -38,6 +40,14 @@ class Product {
           { $sort: sort },
           { $skip: (data.page * 1 - 1) * data.limit },
           { $limit: data.limit * 1 },
+          {
+            $lookup: {
+              from: "members",
+              localField: "market_mb_id",
+              foreignField: "_id",
+              as: "member_data",
+            },
+          },
           // auth member ko'rayotgan itemiga like bosganligini check qilish ->
           lookup_auth_member_liked(auth_mb_id),
         ])
@@ -139,7 +149,7 @@ class Product {
   /* Review */
   async createReviewData(user, data) {
     try {
-      data.user_id = shapeIntoMongooseObjectId(user._id);
+      data.mb_id = shapeIntoMongooseObjectId(user._id);
       const new_review = await this.saveReviewData(data);
       return new_review;
     } catch (err) {
