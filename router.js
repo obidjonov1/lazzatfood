@@ -48,12 +48,12 @@ router.get(
   productController.getChosenProduct
 );
 router.post(
-  "/products/:id/create-review",
+  "/create-review",
   memberController.retrieveAuthMember,
   productController.createReview
 );
 router.post(
-  "/products/:id/delete-review",
+  "/delete-review",
   memberController.retrieveAuthMember,
   productController.deleteReview
 );

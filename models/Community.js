@@ -1,5 +1,5 @@
 const BoArticleModel = require("../schema/bo_article.model");
-const BoReviewModel = require("../schema/bo_review.model");
+const BoReviewModel = require("../schema/review.model");
 const Definer = require("../lib/mistake");
 const assert = require("assert");
 const {

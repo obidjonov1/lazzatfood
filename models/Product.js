@@ -2,16 +2,17 @@ const assert = require("assert");
 const {
   shapeIntoMongooseObjectId,
   lookup_auth_member_liked,
+  lookup_blog_reviews,
 } = require("../lib/config");
 const Definer = require("../lib/mistake");
 const ProductModel = require("../schema/product.model");
-const BoReviewModel = require("../schema/bo_review.model");
+const ReviewModel = require("../schema/review.model");
 const Member = require("./Member");
 
 class Product {
   constructor() {
     this.productModel = ProductModel;
-    this.boReviewModel = BoReviewModel;
+    this.reviewModel = ReviewModel;
   }
 
   async getAllProductsData(member, data) {
@@ -50,6 +51,7 @@ class Product {
           },
           // auth member ko'rayotgan itemiga like bosganligini check qilish ->
           lookup_auth_member_liked(auth_mb_id),
+          lookup_blog_reviews(),
         ])
         .exec();
 
@@ -80,6 +82,7 @@ class Product {
           { $match: { _id: id, product_status: "PROCESS" } },
           // auth member ko'rayotgan itemiga like bosganligini check qilish ->
           lookup_auth_member_liked(auth_mb_id),
+          lookup_blog_reviews(),
         ])
         .exec();
 
@@ -147,9 +150,10 @@ class Product {
   }
 
   /* Review */
-  async createReviewData(user, data) {
+  async createReviewData(member, data) {
     try {
-      data.mb_id = shapeIntoMongooseObjectId(user._id);
+      data.mb_id = shapeIntoMongooseObjectId(member._id);
+      data._id = shapeIntoMongooseObjectId(data._id)
       const new_review = await this.saveReviewData(data);
       return new_review;
     } catch (err) {
@@ -159,19 +163,19 @@ class Product {
 
   async saveReviewData(data) {
     try {
-      const review = new this.boReviewModel(data);
+      const review = new this.reviewModel(data);
       return await review.save();
-    } catch (mongo_err) {
-      console.log(mongo_err);
-      throw new Error(Definer.mongo_validation_err1);
+    } catch (err) {
+      console.log(err);
+      throw err
     }
   }
 
-  async deleteReviewData(user, review_id) {
+  async deleteReviewData(member, review_id) {
     try {
-      const deleted_review = await this.boReviewModel.deleteOne({
+      const deleted_review = await this.reviewModel.deleteOne({
         _id: shapeIntoMongooseObjectId(review_id),
-        user_id: shapeIntoMongooseObjectId(user._id),
+        mb_id: shapeIntoMongooseObjectId(member._id),
       });
       return deleted_review.deletedCount;
     } catch (err) {
