@@ -153,9 +153,9 @@ class Product {
   async createReviewData(member, data) {
     try {
       data.mb_id = shapeIntoMongooseObjectId(member._id);
-      data._id = shapeIntoMongooseObjectId(data._id)
-      const new_review = await this.saveReviewData(data);
-      return new_review;
+      data._id = shapeIntoMongooseObjectId(data._id);
+      const result = await this.saveReviewData(data);
+      return result;
     } catch (err) {
       throw err;
     }
@@ -163,21 +163,52 @@ class Product {
 
   async saveReviewData(data) {
     try {
-      const review = new this.reviewModel(data);
-      return await review.save();
+      const result = new this.reviewModel(data);
+      return await result.save();
     } catch (err) {
       console.log(err);
-      throw err
+      throw err;
+    }
+  }
+
+  async getReviewsData(member) {
+    try {
+      const auth_mb_id = shapeIntoMongooseObjectId(member?._id);
+      const result = await this.reviewModel
+        .aggregate([
+          { $match: { _id: auth_mb_id } },
+          {
+            $lookup: {
+              from: "products",
+              localField: "product_id",
+              foreignField: "_id",
+              as: "product_data",
+            },
+          },
+          // arraysiz yozish yani arrayni ichidan chiqarib yuborish ->
+          // faqat 1ta objectni ichidagi objectni olib "product_data" ga qo'yob ber ->
+          { $unwind: "$product_data" },
+          // auth member ko'rayotgan itemiga like bosganligini check qilish ->
+          lookup_auth_member_liked(auth_mb_id),
+          { $sort: { updatedAt: -1 } },
+        ])
+        .exec();
+
+      assert.ok(result, Definer.review_err);
+
+      return result;
+    } catch (err) {
+      throw err;
     }
   }
 
   async deleteReviewData(member, review_id) {
     try {
-      const deleted_review = await this.reviewModel.deleteOne({
+      const result = await this.reviewModel.deleteOne({
         _id: shapeIntoMongooseObjectId(review_id),
         mb_id: shapeIntoMongooseObjectId(member._id),
       });
-      return deleted_review.deletedCount;
+      return result.deletedCount;
     } catch (err) {
       throw err;
     }

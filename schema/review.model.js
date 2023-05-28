@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { cmt_status_enums, cmt_group_enums } = require("../lib/config");
 const Schema = mongoose.Schema;
 
 const reviewSchema = new mongoose.Schema(
@@ -9,20 +8,13 @@ const reviewSchema = new mongoose.Schema(
     cmt_content: { type: String, required: false },
     cmt_status: {
       type: String,
-      enum: {
-        values: cmt_status_enums,
-        massege: "{VALUE} is not among permitted values",
-      },
-      required: true,
       default: "active",
+      required: false,
     },
     rating_group: {
       type: String,
+      ref: "product",
       required: true,
-      enum: {
-        values: cmt_group_enums,
-        massege: "{VALUE} is not among permitted values",
-      },
     },
     rating_stars: {
       type: Number,
@@ -32,7 +24,6 @@ const reviewSchema = new mongoose.Schema(
       type: Number,
       required: false,
     },
-    cmt_images: { type: Array, required: false, default: [] },
   },
   { timestamps: true }
 );

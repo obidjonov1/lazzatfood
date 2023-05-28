@@ -1,5 +1,4 @@
 const BoArticleModel = require("../schema/bo_article.model");
-const BoReviewModel = require("../schema/review.model");
 const Definer = require("../lib/mistake");
 const assert = require("assert");
 const {
@@ -12,7 +11,6 @@ const Member = require("./Member");
 class Community {
   constructor() {
     this.boArticleModel = BoArticleModel;
-    this.boReviewModel = BoReviewModel;
   }
   async createArticleData(member, data) {
     try {
@@ -128,39 +126,6 @@ class Community {
       assert.ok(result, Definer.article_err3);
 
       return result;
-    } catch (err) {
-      throw err;
-    }
-  }
-
-  /* Review */
-  async createReviewData(user, data) {
-    try {
-      data.user_id = shapeIntoMongooseObjectId(user._id);
-      const new_review = await this.saveReviewData(data);
-      return new_review;
-    } catch (err) {
-      throw err;
-    }
-  }
-
-  async saveReviewData(data) {
-    try {
-      const review = new this.boReviewModel(data);
-      return await review.save();
-    } catch (mongo_err) {
-      console.log(mongo_err);
-      throw new Error(Definer.mongo_validation_err1);
-    }
-  }
-
-  async deleteReviewData(user, review_id) {
-    try {
-      const deleted_review = await this.boReviewModel.deleteOne({
-        _id: shapeIntoMongooseObjectId(review_id),
-        user_id: shapeIntoMongooseObjectId(user._id),
-      });
-      return deleted_review.deletedCount;
     } catch (err) {
       throw err;
     }

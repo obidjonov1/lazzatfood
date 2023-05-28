@@ -94,6 +94,19 @@ productController.createReview = async (req, res) => {
   }
 };
 
+productController.getReviews = async (req, res) => {
+  try {
+    console.log("GET: cont/getReviews");
+    const product = new Product();
+    const result = await product.getReviewsData(req.member);
+
+    res.json({ state: "success", data: result });
+  } catch (err) {
+    console.log(`ERROR: cont/getReviews ${err.message}`);
+    res.json({ state: "fail", message: err.message });
+  }
+};
+
 productController.deleteReview = async (req, res) => {
   try {
     console.log("POST: cont/deleteReview");

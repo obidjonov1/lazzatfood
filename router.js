@@ -52,12 +52,16 @@ router.post(
   memberController.retrieveAuthMember,
   productController.createReview
 );
+router.get(
+  "/market/product/:product_id/target",
+  memberController.retrieveAuthMember,
+  productController.getReviews
+);
 router.post(
   "/delete-review",
   memberController.retrieveAuthMember,
   productController.deleteReview
 );
-
 
 // Market related routers
 router.get(
