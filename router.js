@@ -53,7 +53,7 @@ router.post(
   productController.createReview
 );
 router.get(
-  "/market/product/:product_id/target",
+  "/reviews",
   memberController.retrieveAuthMember,
   productController.getReviews
 );

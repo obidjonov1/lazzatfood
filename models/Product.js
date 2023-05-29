@@ -171,38 +171,38 @@ class Product {
     }
   }
 
-  async getReviewsData(member) {
+  async getReviewsData(member, data) {
     try {
       const auth_mb_id = shapeIntoMongooseObjectId(member?._id);
-      const result = await this.reviewModel
-        .aggregate([
-          { $match: { _id: auth_mb_id } },
-          {
-            $lookup: {
-              from: "products",
-              localField: "product_id",
-              foreignField: "_id",
-              as: "product_data",
-            },
-          },
-          // arraysiz yozish yani arrayni ichidan chiqarib yuborish ->
-          // faqat 1ta objectni ichidagi objectni olib "product_data" ga qo'yob ber ->
-          { $unwind: "$product_data" },
-          // auth member ko'rayotgan itemiga like bosganligini check qilish ->
-          lookup_auth_member_liked(auth_mb_id),
-          { $sort: { updatedAt: -1 } },
-        ])
-        .exec();
+      const rating_ref_id = shapeIntoMongooseObjectId(data.rating_ref_id);
+      let match = { rating_ref_id: rating_ref_id, cmt_status: "active" };
+      let aggregationQuery = [];
+      data.page = data["page"] * 1;
 
-      assert.ok(result, Definer.review_err);
+      const sort =
+        data.order === "createdAt" ? { [data.order]: 1 } : { [data.order]: -1 };
+      data.limit = data["limit"] * 1;
+      aggregationQuery.push({ $match: match });
+      aggregationQuery.push({ $sample: { size: data.limit } });
+      aggregationQuery.push({
+        $lookup: {
+          from: "members",
+          localField: "mb_id",
+          foreignField: "_id",
+          as: "member_data",
+        },
+      });
+      aggregationQuery.push({ $sort: sort });
+      const result = await this.reviewModel.aggregate(aggregationQuery).exec();
 
+      assert.ok(result, Definer.general_err1);
       return result;
     } catch (err) {
       throw err;
     }
   }
 
-  async deleteReviewData(member, review_id) {
+  async deleteReviewData(member, _id) {
     try {
       const result = await this.reviewModel.deleteOne({
         _id: shapeIntoMongooseObjectId(review_id),

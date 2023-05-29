@@ -14,7 +14,7 @@ const reviewSchema = new mongoose.Schema(
     rating_group: {
       type: String,
       ref: "product",
-      required: true,
+      required: false,
     },
     rating_stars: {
       type: Number,
@@ -23,6 +23,7 @@ const reviewSchema = new mongoose.Schema(
     cmt_likes: {
       type: Number,
       required: false,
+      default: 0,
     },
   },
   { timestamps: true }

@@ -97,8 +97,9 @@ productController.createReview = async (req, res) => {
 productController.getReviews = async (req, res) => {
   try {
     console.log("GET: cont/getReviews");
+    const data = req.query;
     const product = new Product();
-    const result = await product.getReviewsData(req.member);
+    const result = await product.getReviewsData(req.member, data);
 
     res.json({ state: "success", data: result });
   } catch (err) {
