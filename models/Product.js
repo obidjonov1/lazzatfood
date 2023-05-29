@@ -180,7 +180,10 @@ class Product {
       data.page = data["page"] * 1;
 
       const sort =
-        data.order === "createdAt" ? { [data.order]: 1 } : { [data.order]: -1 };
+        data.order === "rating_stars"
+          ? { [data.order]: -1 }
+          : { createdAt: -1 };
+
       data.limit = data["limit"] * 1;
       aggregationQuery.push({ $match: match });
       aggregationQuery.push({ $sample: { size: data.limit } });
@@ -202,10 +205,10 @@ class Product {
     }
   }
 
-  async deleteReviewData(member, _id) {
+  async deleteReviewData(member, review_id) {
     try {
       const result = await this.reviewModel.deleteOne({
-        _id: shapeIntoMongooseObjectId(review_id),
+        _id: shapeIntoMongooseObjectId(review_id), // _id ga o'zgartirildi
         mb_id: shapeIntoMongooseObjectId(member._id),
       });
       return result.deletedCount;
