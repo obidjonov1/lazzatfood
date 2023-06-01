@@ -1,0 +1,25 @@
+version: "3.3"
+
+services:
+  node:
+    container_name: lazzatfood_backend
+    restart: always
+    image: node:16.10.0
+    ports:
+      - 3003:3003
+    volumes:
+      - ./:/usr/scr/app
+    working_dir: /usr/scr/app
+
+    networks:
+      - lazzatfood_network
+
+    # PRODUCTION
+    command: bash -c "npm install && npm run start:prod"
+
+    # DEVELOPMENT
+    # command: bash -c "npm install && npm run dev"
+
+networks:
+  lazzatfood_network:
+    driver: bridge
